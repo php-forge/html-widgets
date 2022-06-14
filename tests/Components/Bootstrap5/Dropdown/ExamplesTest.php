@@ -67,7 +67,7 @@ final class ExamplesTest extends TestCase
                                 ['label' => 'Another action', 'link' => '#'],
                                 ['label' => 'Something else here', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -130,7 +130,7 @@ final class ExamplesTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -184,7 +184,7 @@ final class ExamplesTest extends TestCase
                                 ['label' => 'Another action', 'link' => '#'],
                                 ['label' => 'Something else here', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->toggleType('link')
@@ -256,7 +256,7 @@ final class ExamplesTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->toggleType('link')
@@ -322,7 +322,7 @@ final class ExamplesTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->toggleType('link')
@@ -388,7 +388,7 @@ final class ExamplesTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->toggleType('link')
@@ -454,7 +454,7 @@ final class ExamplesTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->toggleType('link')
@@ -520,7 +520,7 @@ final class ExamplesTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->toggleType('split')
@@ -585,7 +585,7 @@ final class ExamplesTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->toggleType('split')

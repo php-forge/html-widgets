@@ -14,7 +14,7 @@ use ReflectionException;
  *
  * @link https://getbootstrap.com/docs/5.2/components/dropdowns/#directions
  */
-final class DirectionTest extends TestCase
+final class DirectionsTest extends TestCase
 {
     /**
      * Make the dropdown menu centered below the toggle with `.dropdown-center` on the parent element.
@@ -63,7 +63,7 @@ final class DirectionTest extends TestCase
                                 ['label' => 'Action two', 'link' => '#'],
                                 ['label' => 'Action three', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -126,7 +126,7 @@ final class DirectionTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -244,7 +244,7 @@ final class DirectionTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -307,7 +307,7 @@ final class DirectionTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()

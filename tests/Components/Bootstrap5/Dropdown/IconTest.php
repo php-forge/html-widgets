@@ -55,17 +55,16 @@ final class IconTest extends TestCase
                                     'label' => 'Unicode icon',
                                     'link' => '#',
                                     'icon' => '&#9742;',
-                                    'iconContainerAttributes' => ['class' => 'me-2']
+                                    'iconContainerAttributes' => ['class' => 'me-2'],
                                 ],
                                 [
                                     'label' => 'Unicode icon',
                                     'link' => '#',
                                     'icon' => '&#9851;',
-                                    'iconContainerAttributes' => ['class' => 'me-2']
+                                    'iconContainerAttributes' => ['class' => 'me-2'],
                                 ],
-
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -119,22 +118,22 @@ final class IconTest extends TestCase
                                     'label' => 'Home',
                                     'link' => '#',
                                     'iconClass' => 'bi bi-house',
-                                    'iconContainerAttributes' => ['class' => 'me-2']
+                                    'iconContainerAttributes' => ['class' => 'me-2'],
                                 ],
                                 [
                                     'label' => 'Dashboard',
                                     'link' => '#',
                                     'iconClass' => 'bi bi-speedometer2',
-                                    'iconContainerAttributes' => ['class' => 'me-2']
+                                    'iconContainerAttributes' => ['class' => 'me-2'],
                                 ],
                                 [
                                     'label' => 'Orders',
                                     'link' => '#',
                                     'iconClass' => 'bi bi-table',
-                                    'iconContainerAttributes' => ['class' => 'me-2']
+                                    'iconContainerAttributes' => ['class' => 'me-2'],
                                 ],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()

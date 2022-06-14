@@ -61,7 +61,7 @@ final class MenuContentTest extends TestCase
                                 ['label' => 'Action', 'link' => '#'],
                                 ['label' => 'Another action', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -125,7 +125,7 @@ final class MenuContentTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -187,7 +187,7 @@ final class MenuContentTest extends TestCase
                                 [
                                     'label' => 'Some example text thats free-flowing within the dropdown menu.',
                                     'link' => '',
-                                    'headerAttributes' => ['class' => 'pe-4 ps-4 text-muted']
+                                    'headerAttributes' => ['class' => 'pe-4 ps-4 text-muted'],
                                 ],
                                 [
                                     'label' => 'And this is more example text.',

@@ -61,7 +61,7 @@ final class MenuAlignmentTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -104,7 +104,7 @@ final class MenuAlignmentTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -116,7 +116,7 @@ final class MenuAlignmentTest extends TestCase
             'itemClass()' => ['dropdown-item'],
             'itemsContainerClass()' => ['dropdown-menu dropdown-menu-lg-end'],
             'toggleAttributes()' => [
-                ['aria-expanded' => 'false', 'data-bs-display' => 'static', 'data-bs-toggle' => 'dropdown']
+                ['aria-expanded' => 'false', 'data-bs-display' => 'static', 'data-bs-toggle' => 'dropdown'],
             ],
             'toggleClass()' => ['btn btn-secondary dropdown-toggle'],
         ];
@@ -149,7 +149,7 @@ final class MenuAlignmentTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -161,7 +161,7 @@ final class MenuAlignmentTest extends TestCase
             'itemClass()' => ['dropdown-item'],
             'itemsContainerClass()' => ['dropdown-menu dropdown-menu-end dropdown-menu-lg-start'],
             'toggleAttributes()' => [
-                ['aria-expanded' => 'false', 'data-bs-display' => 'static', 'data-bs-toggle' => 'dropdown']
+                ['aria-expanded' => 'false', 'data-bs-display' => 'static', 'data-bs-toggle' => 'dropdown'],
             ],
             'toggleClass()' => ['btn btn-secondary dropdown-toggle'],
         ];
@@ -194,7 +194,7 @@ final class MenuAlignmentTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -206,7 +206,7 @@ final class MenuAlignmentTest extends TestCase
             'itemClass()' => ['dropdown-item'],
             'itemsContainerClass()' => ['dropdown-menu'],
             'toggleAttributes()' => [
-                ['aria-expanded' => 'false', 'data-bs-toggle' => 'dropdown']
+                ['aria-expanded' => 'false', 'data-bs-toggle' => 'dropdown'],
             ],
             'toggleClass()' => ['btn btn-secondary dropdown-toggle'],
         ];
@@ -239,7 +239,7 @@ final class MenuAlignmentTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -251,7 +251,7 @@ final class MenuAlignmentTest extends TestCase
             'itemClass()' => ['dropdown-item'],
             'itemsContainerClass()' => ['dropdown-menu'],
             'toggleAttributes()' => [
-                ['aria-expanded' => 'false', 'data-bs-toggle' => 'dropdown']
+                ['aria-expanded' => 'false', 'data-bs-toggle' => 'dropdown'],
             ],
             'toggleClass()' => ['btn btn-secondary dropdown-toggle'],
         ];
@@ -284,7 +284,7 @@ final class MenuAlignmentTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -296,7 +296,7 @@ final class MenuAlignmentTest extends TestCase
             'itemClass()' => ['dropdown-item'],
             'itemsContainerClass()' => ['dropdown-menu'],
             'toggleAttributes()' => [
-                ['aria-expanded' => 'false', 'data-bs-toggle' => 'dropdown']
+                ['aria-expanded' => 'false', 'data-bs-toggle' => 'dropdown'],
             ],
             'toggleClass()' => ['btn btn-secondary dropdown-toggle'],
         ];
@@ -329,7 +329,7 @@ final class MenuAlignmentTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -390,7 +390,7 @@ final class MenuAlignmentTest extends TestCase
                                 ['label' => 'Another action', 'link' => '#'],
                                 ['label' => 'Something else here', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -448,7 +448,7 @@ final class MenuAlignmentTest extends TestCase
                                 ['label' => 'Another action', 'link' => '#'],
                                 ['label' => 'Something else here', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()

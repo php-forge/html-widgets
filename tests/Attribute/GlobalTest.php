@@ -7,7 +7,7 @@ namespace Forge\Html\Widgets\Tests\Attribute;
 use Forge\Html\Widgets\Attribute\Globals;
 use PHPUnit\Framework\TestCase;
 
-final class GlobalAttributeTest extends TestCase
+final class GlobalTest extends TestCase
 {
     public function testImmutability(): void
     {

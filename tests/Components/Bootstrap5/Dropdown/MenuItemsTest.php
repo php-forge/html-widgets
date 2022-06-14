@@ -60,7 +60,7 @@ final class MenuItemsTest extends TestCase
                                 ['label' => 'Active link', 'link' => '#', 'active' => true],
                                 ['label' => 'Another link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -114,7 +114,7 @@ final class MenuItemsTest extends TestCase
                                 ['label' => 'Disabled link', 'link' => '#', 'disabled' => true],
                                 ['label' => 'Another link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -170,7 +170,7 @@ final class MenuItemsTest extends TestCase
                                 ['label' => 'Another action', 'link' => '#'],
                                 ['label' => 'Something else here', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -221,7 +221,7 @@ final class MenuItemsTest extends TestCase
                                 ['label' => 'Another action', 'link' => '#'],
                                 ['label' => 'Something else here', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()

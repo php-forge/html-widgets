@@ -94,7 +94,7 @@ final class Button extends Globals
         }
 
         return match ($this->type) {
-            'link' =>  $this->renderButtonLink($attributes),
+            'link' => $this->renderButtonLink($attributes),
             default => $this->renderButton($attributes),
         };
     }
@@ -114,7 +114,7 @@ final class Button extends Globals
     {
         if ($this->disabled) {
             $this->cssClass->add($attributes, 'disabled');
-            $attributes['aria-disabled'] = "true";
+            $attributes['aria-disabled'] = 'true';
         }
 
         $attributes['href'] = $this->link;
