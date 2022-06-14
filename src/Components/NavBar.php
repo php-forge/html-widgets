@@ -168,20 +168,6 @@ final class NavBar extends Globals
     }
 
     /**
-     * Returns a new instance with the specified Id so that it is used in the `nav` widget.
-     *
-     * @param string $value The Id of the `nav` widget.
-     *
-     * @return self
-     */
-    public function buttonToggleId(string $value): self
-    {
-        $new = clone $this;
-        $new->buttonToggleId = $value;
-        return $new;
-    }
-
-    /**
      * Returns a new instance with the specified button toggle attributes.
      *
      * @param array $values Attribute values indexed by attribute names.
@@ -220,6 +206,20 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->buttonToggleContent = $value;
+        return $new;
+    }
+
+    /**
+     * Returns a new instance with the specified Id so that it is used in the `nav` widget.
+     *
+     * @param string $value The Id of the `nav` widget.
+     *
+     * @return self
+     */
+    public function buttonToggleId(string $value): self
+    {
+        $new = clone $this;
+        $new->buttonToggleId = $value;
         return $new;
     }
 
