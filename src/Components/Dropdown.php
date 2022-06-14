@@ -486,9 +486,9 @@ final class Dropdown extends Globals
     /**
      * @param array $item The item to be rendered.
      *
-     * @return string
-     *
      * @throws ReflectionException
+     *
+     * @return string
      */
     private function renderItem(array $item): string
     {

@@ -8,7 +8,6 @@ use Forge\Html\Widgets\Components\Nav;
 use Forge\Html\Widgets\Components\NavBar;
 use Forge\TestUtils\Assert;
 use PHPUnit\Framework\TestCase;
-use ReflectionException;
 
 /**
  * Navbars can use `.navbar-toggler`, `.navbar-collapse`, and `.navbar-expand{-sm|-md|-lg|-xl|-xxl}` classes to

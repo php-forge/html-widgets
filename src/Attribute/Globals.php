@@ -17,7 +17,6 @@ abstract class Globals extends AbstractWidget
     protected Encode $encode;
     protected Tag $tag;
 
-
     public function __construct()
     {
         $this->attributesHelper = new Attributes();

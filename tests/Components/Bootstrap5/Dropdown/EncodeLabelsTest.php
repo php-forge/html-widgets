@@ -9,7 +9,7 @@ use Forge\TestUtils\Assert;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
 
-final class EncodeLabelTest extends TestCase
+final class EncodeLabelsTest extends TestCase
 {
     /**
      * For default encoding, the label should be encoded.
@@ -56,7 +56,7 @@ final class EncodeLabelTest extends TestCase
                                 ['label' => 'Encode && Labels', 'link' => '#'],
                                 ['label' => 'Encode &&& Labels', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -106,7 +106,7 @@ final class EncodeLabelTest extends TestCase
                                 ['label' => 'Encode && Labels', 'link' => '#'],
                                 ['label' => 'Encode &&& Labels', 'link' => '#', 'encodeLabel' => false],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()

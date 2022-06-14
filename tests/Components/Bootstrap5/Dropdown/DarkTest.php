@@ -67,11 +67,11 @@ final class DarkTest extends TestCase
                             'items' => [
                                 ['label' => 'Action', 'link' => '#'],
                                 ['label' => 'Another action', 'link' => '#'],
-                                    ['label' => 'Something else here', 'link' => '#'],
+                                ['label' => 'Something else here', 'link' => '#'],
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()

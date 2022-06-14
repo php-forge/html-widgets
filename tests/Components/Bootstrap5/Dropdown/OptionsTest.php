@@ -64,7 +64,7 @@ final class OptionsTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -110,7 +110,7 @@ final class OptionsTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -156,7 +156,7 @@ final class OptionsTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -202,7 +202,7 @@ final class OptionsTest extends TestCase
                                 ['label' => 'Menu item', 'link' => '#'],
                                 ['label' => 'Menu item', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -243,7 +243,7 @@ final class OptionsTest extends TestCase
                             ['label' => 'Another action', 'link' => '#'],
                             ['label' => 'Something else here', 'link' => '#'],
                         ],
-                    ]
+                    ],
                 ]
             )
             ->render() . PHP_EOL;
@@ -275,7 +275,7 @@ final class OptionsTest extends TestCase
                             '-',
                             ['label' => 'Separated link', 'link' => '#'],
                         ],
-                    ]
+                    ],
                 ]
             )
             ->toggleType('split')

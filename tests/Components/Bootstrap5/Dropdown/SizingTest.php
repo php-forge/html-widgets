@@ -68,7 +68,7 @@ final class SizingTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()
@@ -127,7 +127,7 @@ final class SizingTest extends TestCase
                                 '-',
                                 ['label' => 'Separated link', 'link' => '#'],
                             ],
-                        ]
+                        ],
                     ]
                 )
                 ->render()

@@ -392,7 +392,7 @@ final class NavBar extends Globals
         $content .= preg_replace("/([\r\n]{4,}|[\n]{2,}|[\r]{2,})/", PHP_EOL, strtr($this->template, $parts));
 
         return match ($this->container) {
-            true =>  $this->tag->begin($this->containerTag, $containerAttributes) . PHP_EOL . $content . PHP_EOL,
+            true => $this->tag->begin($this->containerTag, $containerAttributes) . PHP_EOL . $content . PHP_EOL,
             default => $content . PHP_EOL,
         };
     }
@@ -432,7 +432,7 @@ final class NavBar extends Globals
             $brand = $this->tag->create('img', '', $brandImageAttributes) . $this->brand;
         }
 
-        $brandTag =  $this->tag->create($this->brandTag, $brand, $brandAttributes);
+        $brandTag = $this->tag->create($this->brandTag, $brand, $brandAttributes);
 
         return match ($brand) {
             '' => '',
