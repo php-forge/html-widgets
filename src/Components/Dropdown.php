@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Widgets\Attribute\Globals;
-use Forge\Html\Widgets\Components\Helper\Normalize;
+use Forge\Html\Widgets\Helper\Normalize;
 use ReflectionException;
 
 use function gettype;
@@ -33,7 +33,6 @@ final class Dropdown extends Globals
     private array $itemsContainerAttributes = [];
     private string $itemsContainerClass = '';
     private string $itemsContainerTag = 'ul';
-    private Normalize $normalize;
     private array $splitButtonAttributes = [];
     private string $splitButtonClass = '';
     private array $splitButtonSpanAttributes = [];
@@ -41,12 +40,6 @@ final class Dropdown extends Globals
     private array $toggleAttributes = [];
     private string $toggleClass = '';
     private string $toggleType = 'button';
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->normalize = new Normalize();
-    }
 
     /**
      * Returns a new instance with the specified active class.
@@ -423,7 +416,7 @@ final class Dropdown extends Globals
     protected function run(): string
     {
         $containerAttributes = $this->containerAttributes;
-        $items = $this->normalize->dropdown($this->items);
+        $items = Normalize::dropdown($this->items);
         $items = $this->renderItems($items);
 
         $this->cssClass->add($containerAttributes, $this->containerClass);

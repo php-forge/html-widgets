@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Widgets\Attribute\Globals;
-use Forge\Html\Widgets\Components\Helper\Normalize;
+use Forge\Html\Widgets\Helper\Normalize;
 use ReflectionException;
 use Stringable;
 
@@ -65,19 +65,12 @@ final class Menu extends Globals
     private array $itemsContainerAttributes = [];
     private string $itemsContainerClass = '';
     private string $itemsTag = 'li';
-    private Normalize $normalize;
     private string $labelTemplate = '{label}';
     private string $lastItemClass = '';
     private string $linkClass = '';
     private string $linkTemplate = '<a{attributes}>{label}</a>';
     private string $tagName = 'ul';
     private string $template = '{items}';
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->normalize = new Normalize();
-    }
 
     /**
      * Returns a new instance with the specified after container attributes.
@@ -366,6 +359,20 @@ final class Menu extends Globals
     }
 
     /**
+     * Returns a new instance with the specified if enabled or disabled the items container.
+     *
+     * @param bool $value The items container enable or disable, for default is `true`.
+     *
+     * @return self
+     */
+    public function itemsContainer(bool $value): self
+    {
+        $new = clone $this;
+        $new->itemsContainer = $value;
+        return $new;
+    }
+
+    /**
      * Returns a new instance with the specified items' container attributes.
      *
      * @param array $values Attribute values indexed by attribute names.
@@ -508,7 +515,7 @@ final class Menu extends Globals
      */
     protected function run(): string
     {
-        $items = $this->normalize->menu($this->items, $this->currentPath, $this->activateItems);
+        $items = Normalize::menu($this->items, $this->currentPath, $this->activateItems);
 
         if ($items === []) {
             return '';
@@ -615,10 +622,8 @@ final class Menu extends Globals
      */
     private function renderItems(array $items): string
     {
-        $itemsContainerAttributes = $this->itemsContainerAttributes;
         $lines = [];
         $n = count($items);
-        $this->cssClass->add($itemsContainerAttributes, $this->itemsContainerClass);
 
         /** @psalm-var array[] $items  */
         foreach ($items as $i => $item) {
@@ -628,9 +633,11 @@ final class Menu extends Globals
             } else {
                 /** @psalm-var array|null $item['itemsContainerAttributes'] */
                 $itemsContainerAttributes = array_merge(
-                    $itemsContainerAttributes,
+                    $this->itemsContainerAttributes,
                     $item['itemsContainerAttributes'] ?? [],
                 );
+
+                $this->cssClass->add($itemsContainerAttributes, $this->itemsContainerClass);
 
                 if ($i === 0 && $this->firstItemClass !== '') {
                     $this->cssClass->add($itemsContainerAttributes, $this->firstItemClass);

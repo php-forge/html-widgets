@@ -22,18 +22,17 @@ final class TagsTest extends TestCase
 {
     public function testButtonTags(): void
     {
-        $button = new Button();
         $input = new Input();
         // Button `a` tag with `button` type.
         $this->assertSame(
             '<a class="btn btn-primary" href="#" role="button">Link</a>',
-            $button->class('btn btn-primary')->type('link')->content('Link')->render(),
+            button::create()->class('btn btn-primary')->type('link')->content('Link')->render(),
         );
 
         // Submit button
         $this->assertSame(
             '<button class="btn btn-primary" type="submit">Button</button>',
-            $button->class('btn btn-primary')->type('submit')->content('Button')->render(),
+            button::create()->class('btn btn-primary')->type('submit')->content('Button')->render(),
         );
 
         // Input button

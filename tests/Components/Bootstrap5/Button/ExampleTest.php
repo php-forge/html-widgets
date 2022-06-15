@@ -44,7 +44,6 @@ final class ExampleTest extends TestCase
      */
     public function testButton(string $class, string $content, string $expected): void
     {
-        $button = new Button();
-        $this->assertSame($expected, $button->class($class)->content($content)->render());
+        $this->assertSame($expected, button::create()->class($class)->content($content)->render());
     }
 }

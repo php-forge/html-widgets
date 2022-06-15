@@ -19,42 +19,37 @@ final class SizesTest extends TestCase
      */
     public function testCustom(): void
     {
-        $button = new Button();
         $attributes = ['style' => '--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;'];
 
         $this->assertSame(
             '<button class="btn btn-primary" type="button" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Custom button</button>',
-            $button->attributes($attributes)->class('btn btn-primary')->content('Custom button')->render(),
+            button::create()->attributes($attributes)->class('btn btn-primary')->content('Custom button')->render(),
         );
     }
 
     public function testLarge(): void
     {
-        $button = new Button();
-
         $this->assertSame(
             '<button class="btn btn-primary btn-lg" type="button">Large button</button>',
-            $button->class('btn btn-primary btn-lg')->content('Large button')->render(),
+            button::create()->class('btn btn-primary btn-lg')->content('Large button')->render(),
         );
 
         $this->assertSame(
             '<button class="btn btn-secondary btn-lg" type="button">Large button</button>',
-            $button->class('btn btn-secondary btn-lg')->content('Large button')->render(),
+            button::create()->class('btn btn-secondary btn-lg')->content('Large button')->render(),
         );
     }
 
     public function testSmall(): void
     {
-        $button = new Button();
-
         $this->assertSame(
             '<button class="btn btn-primary btn-sm" type="button">Small button</button>',
-            $button->class('btn btn-primary btn-sm')->content('Small button')->render(),
+            button::create()->class('btn btn-primary btn-sm')->content('Small button')->render(),
         );
 
         $this->assertSame(
             '<button class="btn btn-secondary btn-sm" type="button">Small button</button>',
-            $button->class('btn btn-secondary btn-sm')->content('Small button')->render(),
+            button::create()->class('btn btn-secondary btn-sm')->content('Small button')->render(),
         );
     }
 }

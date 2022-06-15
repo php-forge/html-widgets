@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Forge\Html\Widgets\Components\Helper;
+namespace Forge\Html\Widgets\Helper;
 
 use InvalidArgumentException;
 
@@ -18,7 +18,7 @@ final class Normalize
      *
      * @return array The normalized array of items.
      */
-    public function dropdown(array $items, bool &$active = false): array
+    public static function dropdown(array $items, bool &$active = false): array
     {
         /**
          * @psalm-var array[] $items
@@ -26,7 +26,7 @@ final class Normalize
          */
         foreach ($items as $i => $child) {
             if (is_array($child)) {
-                $items[$i]['label'] = $this->label($child);
+                $items[$i]['label'] = self::label($child);
                 /** @var bool */
                 $items[$i]['active'] = $child['active'] ?? false;
                 /** @var bool */
@@ -55,7 +55,7 @@ final class Normalize
                 $items[$i]['itemsAttributes'] = $child['itemsttributes'] ?? [];
 
                 if ($dropdown !== []) {
-                    $items[$i]['items'] = $this->dropdown($dropdown);
+                    $items[$i]['items'] = self::dropdown($dropdown);
                 }
             }
         }
@@ -73,7 +73,7 @@ final class Normalize
      *
      * @return array The normalized array of items.
      */
-    public function menu(
+    public static function menu(
         array $items,
         string $currentPath = '/',
         bool $activateItems = true,
@@ -89,7 +89,7 @@ final class Normalize
                 $dropdown = $child['items'] ?? [];
 
                 if ($dropdown !== []) {
-                    $items[$i]['items'] = $this->menu($dropdown, $currentPath, $activateItems, $active);
+                    $items[$i]['items'] = self::menu($dropdown, $currentPath, $activateItems, $active);
                 } else {
                     /** @var string */
                     $link = $child['link'] ?? '/';
@@ -97,7 +97,7 @@ final class Normalize
                     $active = $child['active'] ?? false;
 
                     if ($active === false) {
-                        $items[$i]['active'] = $this->isItemActive($link, $currentPath, $activateItems);
+                        $items[$i]['active'] = self::isItemActive($link, $currentPath, $activateItems);
                     }
 
                     /** @var bool */
@@ -122,12 +122,12 @@ final class Normalize
      *
      * @return bool Whether the menu item is active.
      */
-    private function isItemActive(string $link, string $currentPath, bool $activateItems): bool
+    private static function isItemActive(string $link, string $currentPath, bool $activateItems): bool
     {
         return ($link === $currentPath) && $activateItems;
     }
 
-    private function label(array $item): string
+    private static function label(array $item): string
     {
         if (!isset($item['label'])) {
             throw new InvalidArgumentException('The "label" option is required.');

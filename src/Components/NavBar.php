@@ -6,6 +6,7 @@ namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Tag\Element\Button;
 use Forge\Html\Widgets\Attribute\Globals;
+use Forge\Html\Widgets\Helper\Utils;
 
 /**
  * NavBar renders a navbar HTML component.
@@ -389,7 +390,7 @@ final class NavBar extends Globals
             $parts['{toggle}'] = PHP_EOL . $this->renderButtonToggle();
         }
 
-        $content .= preg_replace("/([\r\n]{4,}|[\n]{2,}|[\r]{2,})/", PHP_EOL, strtr($this->template, $parts));
+        $content .= Utils::removeDoubleLinesBreaks(strtr($this->template, $parts));
 
         return match ($this->container) {
             true => $this->tag->begin($this->containerTag, $containerAttributes) . PHP_EOL . $content . PHP_EOL,
