@@ -6,38 +6,39 @@ namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 final class DisabledStateTest extends TestCase
 {
     /**
      * @link https://getbootstrap.com/docs/5.2/components/buttons/#disabled-state
+     *
+     * @throws ReflectionException
      */
     public function testDisabledState(): void
     {
-        $button = new Button();
-
         /**
          * Make buttons look inactive by adding the disabled boolean attribute to any `<button>` element.
          * Disabled buttons have `pointer-events: none` applied to, preventing hover and active states from triggering.
          */
         $this->assertSame(
             '<button class="btn btn-primary" type="button" disabled>Primary button</button>',
-            $button->class('btn btn-primary')->content('Primary button')->disabled()->render(),
+            button::create()->class('btn btn-primary')->content('Primary button')->disabled()->render(),
         );
 
         $this->assertSame(
             '<button class="btn btn-secondary" type="button" disabled>Button</button>',
-            $button->class('btn btn-secondary')->content('Button')->disabled()->render(),
+            button::create()->class('btn btn-secondary')->content('Button')->disabled()->render(),
         );
 
         $this->assertSame(
             '<button class="btn btn-outline-primary" type="button" disabled>Primary button</button>',
-            $button->class('btn btn-outline-primary')->content('Primary button')->disabled()->render(),
+            button::create()->class('btn btn-outline-primary')->content('Primary button')->disabled()->render(),
         );
 
         $this->assertSame(
             '<button class="btn btn-outline-secondary" type="button" disabled>Button</button>',
-            $button->class('btn btn-outline-secondary')->content('Button')->disabled()->render(),
+            button::create()->class('btn btn-outline-secondary')->content('Button')->disabled()->render(),
         );
 
         /**
@@ -53,12 +54,12 @@ final class DisabledStateTest extends TestCase
          */
         $this->assertSame(
             '<a class="btn btn-primary disabled" href="#" role="button" aria-disabled="true">Primary link</a>',
-            $button->class('btn btn-primary')->content('Primary link')->disabled()->type('link')->render(),
+            button::create()->class('btn btn-primary')->content('Primary link')->disabled()->type('link')->render(),
         );
 
         $this->assertSame(
             '<a class="btn btn-secondary disabled" href="#" role="button" aria-disabled="true">Link</a>',
-            $button->class('btn btn-secondary disabled')->content('Link')->disabled()->type('link')->render(),
+            button::create()->class('btn btn-secondary disabled')->content('Link')->disabled()->type('link')->render(),
         );
     }
 
@@ -76,17 +77,18 @@ final class DisabledStateTest extends TestCase
      * prevent them from receiving keyboard focus, and use custom JavaScript to disable their functionality altogether.
      *
      * @link https://getbootstrap.com/docs/5.2/components/buttons/#link-functionality-caveat
+     *
+     * @throws ReflectionException
      */
     public function testLinkFunctionalityCaveat(): void
     {
-        $button = new Button();
         $attributes = [
             'tabindex' => '-1',
         ];
 
         $this->assertSame(
             '<a class="btn btn-primary disabled" href="#" role="button" tabindex="-1" aria-disabled="true">Primary link</a>',
-            $button
+            button::create()
                 ->attributes($attributes)
                 ->class('btn btn-primary')
                 ->content('Primary link')
@@ -97,7 +99,7 @@ final class DisabledStateTest extends TestCase
 
         $this->assertSame(
             '<a class="btn btn-secondary disabled" href="#" role="button" tabindex="-1" aria-disabled="true">Link</a>',
-            $button
+            button::create()
                 ->attributes($attributes)
                 ->class('btn btn-secondary')
                 ->content('Link')

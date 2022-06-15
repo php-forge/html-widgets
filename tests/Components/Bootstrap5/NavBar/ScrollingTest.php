@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionException;
 
 /**
- * Add `.navbar-nav-scroll` to a `.navbar-nav` (or other navbar sub-component) to enable vertical scrolling within the
+ * Add `.navbar-nav-scroll` to a `.navbar-nav` (or other navbar subcomponent) to enable vertical scrolling within the
  * toggleable contents of a collapsed navbar. By default, scrolling kicks in at 75vh (or 75% of the viewport height),
  * but you can override that with the local CSS custom property `--bs-navbar-height` or custom styles. At larger
  * viewports when the navbar is expanded, content will appear as it does in a default navbar.
@@ -122,6 +122,7 @@ final class ScrollingTest extends TestCase
                 ->class('navbar navbar-expand-lg bg-light')
                 ->begin() .
                 Nav::create(config: $definitions)
+                    ->class('collapse navbar-collapse')
                     ->currentPath('/home')
                     ->id('navbarText')
                     ->items([

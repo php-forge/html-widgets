@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Widgets\Attribute\Globals;
+use Forge\Html\Widgets\Helper\Utils;
 
 final class Nav extends Globals
 {
-    private string $class = 'collapse navbar-collapse';
     private bool $container = true;
     private string $currentPath = '';
     /** @psalm-var array<int, mixed> */
@@ -48,7 +48,7 @@ final class Nav extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->class = $value;
+        $new->cssClass->add($new->attributes, $value);
         return $new;
     }
 
@@ -415,7 +415,7 @@ final class Nav extends Globals
 
     protected function run(): string
     {
-        return $this->renderNav();
+        return Utils::removeDoubleLinesBreaks($this->renderNav());
     }
 
     private function renderContainer(): string
@@ -423,11 +423,9 @@ final class Nav extends Globals
         $html = '';
         $attributes = $this->attributes;
 
-        $this->cssClass->add($attributes, $this->class);
-
         if ($this->renderMenu() !== '') {
             if ($this->container) {
-                $html .= $this->tag->create('div', $this->renderMenu(), $attributes);
+                $html .= $this->tag->create('div', $this->renderMenu(), $attributes) . PHP_EOL;
             } else {
                 $html .= $this->renderMenu();
             }
@@ -451,7 +449,7 @@ final class Nav extends Globals
     {
         return match ($this->offCanvas) {
             true => $this->renderOffCanvas(),
-            false => $this->renderContainer() . PHP_EOL,
+            false => $this->renderContainer(),
         };
     }
 

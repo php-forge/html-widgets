@@ -8,7 +8,6 @@ use Forge\Html\Widgets\Attribute\Globals;
 
 final class Button extends Globals
 {
-    private string $class = '';
     private string $content = '';
     private bool $disabled = false;
     private string $link = '#';
@@ -88,10 +87,6 @@ final class Button extends Globals
     protected function run(): string
     {
         $attributes = $this->attributes;
-
-        if ($this->class !== '') {
-            $this->cssClass->add($attributes, $this->class);
-        }
 
         return match ($this->type) {
             'link' => $this->renderButtonLink($attributes),

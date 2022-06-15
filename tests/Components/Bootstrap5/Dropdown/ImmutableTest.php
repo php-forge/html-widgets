@@ -37,6 +37,7 @@ final class ImmutableTest extends TestCase
         $this->assertNotSame($dropdown, $dropdown->itemContainerTag(''));
         $this->assertNotSame($dropdown, $dropdown->itemTag(''));
         $this->assertNotSame($dropdown, $dropdown->items([]));
+        $this->assertNotSame($dropdown, $dropdown->itemsContainerAttributes([]));
         $this->assertNotSame($dropdown, $dropdown->itemsContainerClass(''));
         $this->assertNotSame($dropdown, $dropdown->splitButtonAttributes([]));
         $this->assertNotSame($dropdown, $dropdown->splitButtonClass(''));

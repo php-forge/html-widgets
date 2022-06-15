@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Widgets\Attribute\Globals;
-use Forge\Html\Widgets\Components\Helper\Normalize;
+use Forge\Html\Widgets\Helper\Normalize;
 use ReflectionException;
 use Stringable;
 
@@ -38,16 +38,13 @@ use function strtr;
 final class Menu extends Globals
 {
     private array $afterAttributes = [];
-    private string $afterClass = '';
     private string $afterContent = '';
     private string $afterTag = 'span';
     private string $activeClass = 'active';
     private bool $activateItems = true;
     private array $beforeAttributes = [];
-    private string $beforeClass = '';
     private string $beforeContent = '';
     private string $beforeTag = 'span';
-    private string $class = '';
     private bool $container = true;
     private string $currentPath = '';
     private string $disabledClass = 'disabled';
@@ -56,28 +53,19 @@ final class Menu extends Globals
     private string $dropdownConfigFile = '';
     private bool $dropdownContainer = true;
     private array $dropdownContainerAttributes = [];
-    private string $dropdownContainerClass = '';
     private string $dropdownContainerTag = 'li';
     private array $dropdownDefinitions = [];
     private string $firstItemClass = '';
     private array $items = [];
     private bool $itemsContainer = true;
     private array $itemsContainerAttributes = [];
-    private string $itemsContainerClass = '';
     private string $itemsTag = 'li';
-    private Normalize $normalize;
     private string $labelTemplate = '{label}';
     private string $lastItemClass = '';
     private string $linkClass = '';
     private string $linkTemplate = '<a{attributes}>{label}</a>';
     private string $tagName = 'ul';
     private string $template = '{items}';
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->normalize = new Normalize();
-    }
 
     /**
      * Returns a new instance with the specified after container attributes.
@@ -96,14 +84,14 @@ final class Menu extends Globals
     /**
      * Returns a new instance with the specified after container class.
      *
-     * @param string $class The class name.
+     * @param string $value The class name.
      *
      * @return self
      */
-    public function afterClass(string $class): self
+    public function afterClass(string $value): self
     {
         $new = clone $this;
-        $new->afterClass = $class;
+        $new->cssClass->add($new->afterAttributes, $value);
         return $new;
     }
 
@@ -173,7 +161,7 @@ final class Menu extends Globals
     public function beforeClass(string $value): self
     {
         $new = clone $this;
-        $new->beforeClass = $value;
+        $this->cssClass->add($new->beforeAttributes, $value);
         return $new;
     }
 
@@ -215,7 +203,7 @@ final class Menu extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->class = $value;
+        $new->cssClass->add($new->attributes, $value);
         return $new;
     }
 
@@ -301,7 +289,7 @@ final class Menu extends Globals
     public function dropdownContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->dropdownContainerClass = $value;
+        $new->cssClass->add($new->dropdownContainerAttributes, $value);
         return $new;
     }
 
@@ -366,6 +354,20 @@ final class Menu extends Globals
     }
 
     /**
+     * Returns a new instance with the specified if enabled or disabled the items container.
+     *
+     * @param bool $value The items container enable or disable, for default is `true`.
+     *
+     * @return self
+     */
+    public function itemsContainer(bool $value): self
+    {
+        $new = clone $this;
+        $new->itemsContainer = $value;
+        return $new;
+    }
+
+    /**
      * Returns a new instance with the specified items' container attributes.
      *
      * @param array $values Attribute values indexed by attribute names.
@@ -389,7 +391,7 @@ final class Menu extends Globals
     public function itemsContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->itemsContainerClass = $value;
+        $new->cssClass->add($new->itemsContainerAttributes, $value);
         return $new;
     }
 
@@ -508,7 +510,7 @@ final class Menu extends Globals
      */
     protected function run(): string
     {
-        $items = $this->normalize->menu($this->items, $this->currentPath, $this->activateItems);
+        $items = Normalize::menu($this->items, $this->currentPath, $this->activateItems);
 
         if ($items === []) {
             return '';
@@ -521,16 +523,12 @@ final class Menu extends Globals
     {
         $afterAttributes = $this->afterAttributes;
 
-        $this->cssClass->add($afterAttributes, $this->afterClass);
-
         return PHP_EOL . $this->tag->create($this->afterTag, $this->afterContent, $afterAttributes);
     }
 
     private function renderBeforeContent(): string
     {
         $beforeAttributes = $this->beforeAttributes;
-
-        $this->cssClass->add($beforeAttributes, $this->beforeClass);
 
         return $this->tag->create($this->beforeTag, $this->beforeContent, $beforeAttributes);
     }
@@ -541,7 +539,6 @@ final class Menu extends Globals
     private function renderDropdown(array $items): string
     {
         $dropdownContainerAttributes = $this->dropdownContainerAttributes;
-        $this->cssClass->add($dropdownContainerAttributes, $this->dropdownContainerClass);
 
         $dropdown = Dropdown::create($this->dropdownConfigFile, $this->dropdownDefinitions, $this->dropdownArguments)
             ->items($items)
@@ -615,10 +612,8 @@ final class Menu extends Globals
      */
     private function renderItems(array $items): string
     {
-        $itemsContainerAttributes = $this->itemsContainerAttributes;
         $lines = [];
         $n = count($items);
-        $this->cssClass->add($itemsContainerAttributes, $this->itemsContainerClass);
 
         /** @psalm-var array[] $items  */
         foreach ($items as $i => $item) {
@@ -628,7 +623,7 @@ final class Menu extends Globals
             } else {
                 /** @psalm-var array|null $item['itemsContainerAttributes'] */
                 $itemsContainerAttributes = array_merge(
-                    $itemsContainerAttributes,
+                    $this->itemsContainerAttributes,
                     $item['itemsContainerAttributes'] ?? [],
                 );
 
@@ -660,8 +655,6 @@ final class Menu extends Globals
         $afterContent = '';
         $attributes = $this->attributes;
         $beforeContent = '';
-
-        $this->cssClass->add($attributes, $this->class);
 
         $content = $this->renderItems($items);
 

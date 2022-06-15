@@ -7,6 +7,7 @@ namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 use Forge\Html\Tag\Form\Input;
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * The `.btn` classes are designed to be used with the `<button>` element. However, you can also use these classes on
@@ -20,20 +21,22 @@ use PHPUnit\Framework\TestCase;
  */
 final class TagsTest extends TestCase
 {
+    /**
+     * @throws ReflectionException
+     */
     public function testButtonTags(): void
     {
-        $button = new Button();
         $input = new Input();
         // Button `a` tag with `button` type.
         $this->assertSame(
             '<a class="btn btn-primary" href="#" role="button">Link</a>',
-            $button->class('btn btn-primary')->type('link')->content('Link')->render(),
+            button::create()->class('btn btn-primary')->type('link')->content('Link')->render(),
         );
 
         // Submit button
         $this->assertSame(
             '<button class="btn btn-primary" type="submit">Button</button>',
-            $button->class('btn btn-primary')->type('submit')->content('Button')->render(),
+            button::create()->class('btn btn-primary')->type('submit')->content('Button')->render(),
         );
 
         // Input button

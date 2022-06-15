@@ -6,6 +6,7 @@ namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * The button plugin allows you to create simple on/off toggle buttons.
@@ -27,14 +28,14 @@ final class PluginTest extends TestCase
      * assistive technologies.
      *
      * @link https://getbootstrap.com/docs/5.2/components/buttons/#toggle-states
+     *
+     * @throws ReflectionException
      */
     public function testToggleStates(): void
     {
-        $button = new Button();
-
         $this->assertSame(
             '<button class="btn btn-primary" type="button" data-bs-toggle="button">Toggle button</button>',
-            $button
+            button::create()
                 ->attributes(['data-bs-toggle' => 'button'])
                 ->class('btn btn-primary')
                 ->content('Toggle button')
@@ -43,7 +44,7 @@ final class PluginTest extends TestCase
 
         $this->assertSame(
             '<button class="btn btn-primary active" type="button" data-bs-toggle="button" aria-pressed="true">Active toggle button</button>',
-            $button
+            button::create()
                 ->attributes(['data-bs-toggle' => 'button', 'aria-pressed' => 'true'])
                 ->class('btn btn-primary active')
                 ->content('Active toggle button')
@@ -52,7 +53,7 @@ final class PluginTest extends TestCase
 
         $this->assertSame(
             '<button class="btn btn-primary" type="button" disabled data-bs-toggle="button">Disabled toggle button</button>',
-            $button
+            button::create()
                 ->attributes(['data-bs-toggle' => 'button', 'disabled' => true])
                 ->class('btn btn-primary')
                 ->content('Disabled toggle button')

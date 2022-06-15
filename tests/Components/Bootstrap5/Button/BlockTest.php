@@ -8,19 +8,22 @@ use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Components\Button;
 use Forge\TestUtils\Assert;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 final class BlockTest extends TestCase
 {
     /**
      * @link https://getbootstrap.com/docs/5.2/components/buttons/#block-buttons
+     *
+     * @throws ReflectionException
      */
     public function testBlock(): void
     {
         $assert = new Assert();
-        $button = new Button();
         $tag = new Tag();
-        $button1 = $button->class('btn btn-primary')->content('Button')->render() . PHP_EOL;
-        $button2 = $button->class('btn btn-primary')->content('Button')->render();
+
+        $button1 = Button::create()->class('btn btn-primary')->content('Button')->render() . PHP_EOL;
+        $button2 = Button::create()->class('btn btn-primary')->content('Button')->render();
 
         /**
          * Create responsive stacks of full-width, `“block buttons”` like those in `Bootstrap 4` with a mix of our
@@ -74,7 +77,7 @@ final class BlockTest extends TestCase
          * Here we’ve taken our previous responsive example and added some flex utilities and a margin utility on the
          * button to right align the buttons when they’re no longer stacked.
          */
-        $button1 = $button->class('btn btn-primary me-md-2')->content('Button')->render() . PHP_EOL;
+        $button1 = Button::create()->class('btn btn-primary me-md-2')->content('Button')->render() . PHP_EOL;
 
         $assert->equalsWithoutLE(
             <<<HTML

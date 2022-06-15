@@ -6,6 +6,7 @@ namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Tag\Element\Button;
 use Forge\Html\Widgets\Attribute\Globals;
+use Forge\Html\Widgets\Helper\Utils;
 
 /**
  * NavBar renders a navbar HTML component.
@@ -28,7 +29,6 @@ final class NavBar extends Globals
     private array $buttonToggleAttributes = [];
     private string $buttonToggleClass = '';
     private string $buttonToggleContent = '<span class="navbar-toggler-icon"></span>';
-    private string $class = 'navbar';
     private bool $container = false;
     private array $containerAttributes = [];
     private string $containerClass = 'container';
@@ -168,20 +168,6 @@ final class NavBar extends Globals
     }
 
     /**
-     * Returns a new instance with the specified Id so that it is used in the `nav` widget.
-     *
-     * @param string $value The Id of the `nav` widget.
-     *
-     * @return self
-     */
-    public function buttonToggleId(string $value): self
-    {
-        $new = clone $this;
-        $new->buttonToggleId = $value;
-        return $new;
-    }
-
-    /**
      * Returns a new instance with the specified button toggle attributes.
      *
      * @param array $values Attribute values indexed by attribute names.
@@ -224,6 +210,20 @@ final class NavBar extends Globals
     }
 
     /**
+     * Returns a new instance with the specified Id so that it is used in the `nav` widget.
+     *
+     * @param string $value The Id of the `nav` widget.
+     *
+     * @return self
+     */
+    public function buttonToggleId(string $value): self
+    {
+        $new = clone $this;
+        $new->buttonToggleId = $value;
+        return $new;
+    }
+
+    /**
      * Returns a new instance with the specified the class `navbar` widget.
      *
      * @param string $value The class `navbar` widget.
@@ -233,7 +233,7 @@ final class NavBar extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->class = $value;
+        $new->cssClass->add($new->attributes, $value);
         return $new;
     }
 
@@ -372,7 +372,6 @@ final class NavBar extends Globals
         $content = '';
         $parts = ['{brand}' => '', '{containerMenu}' => '', '{toggle}' => ''];
 
-        $this->cssClass->add($attributes, $this->class);
         $this->cssClass->add($containerAttributes, $this->containerClass);
 
         $content .= $this->tag->begin($this->tagName, $attributes);
@@ -389,7 +388,7 @@ final class NavBar extends Globals
             $parts['{toggle}'] = PHP_EOL . $this->renderButtonToggle();
         }
 
-        $content .= preg_replace("/([\r\n]{4,}|[\n]{2,}|[\r]{2,})/", PHP_EOL, strtr($this->template, $parts));
+        $content .= Utils::removeDoubleLinesBreaks(strtr($this->template, $parts));
 
         return match ($this->container) {
             true => $this->tag->begin($this->containerTag, $containerAttributes) . PHP_EOL . $content . PHP_EOL,

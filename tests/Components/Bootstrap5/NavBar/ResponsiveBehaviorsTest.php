@@ -8,13 +8,14 @@ use Forge\Html\Widgets\Components\Nav;
 use Forge\Html\Widgets\Components\NavBar;
 use Forge\TestUtils\Assert;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
- * Navbars can use `.navbar-toggler`, `.navbar-collapse`, and `.navbar-expand{-sm|-md|-lg|-xl|-xxl}` classes to
+ * Navbar can use `.navbar-toggler`, `.navbar-collapse`, and `.navbar-expand{-sm|-md|-lg|-xl|-xxl}` classes to
  * determine when their content collapses behind a button. In combination with other utilities, you can easily
  * choose when to show or hide particular elements.
  *
- * For navbars that never collapse, add the `.navbar-expand` class on the navbar. For navbars that always collapse,
+ * For navbar that never collapse, add the `.navbar-expand` class on the navbar. For navbar that always collapse,
  * don’t add any `.navbar-expand` class.
  *
  * @link https://getbootstrap.com/docs/5.2/components/navbar/#responsive-behaviors
@@ -23,7 +24,9 @@ final class ResponsiveBehaviorsTest extends TestCase
 {
     /**
      * Sometimes you want to use the collapse plugin to trigger a container element for content that structurally sits
-     * outside of the `.navbar`. Because our plugin works on the id and `data-bs-target` matching, that’s easily done!.
+     * outside the `.navbar`. Because our plugin works on the id and `data-bs-target` matching, that’s easily done!.
+     *
+     * @throws ReflectionException
      */
     public function testExternalContent(): void
     {
@@ -55,6 +58,7 @@ final class ResponsiveBehaviorsTest extends TestCase
                 ->buttonToggle(true)
                 ->buttonToggleClass('navbar-toggler')
                 ->buttonToggleId('navbarToggleExternalContent')
+                ->class('navbar')
                 ->begin() .
             NavBar::end()
         );
@@ -69,6 +73,8 @@ final class ResponsiveBehaviorsTest extends TestCase
      * `.navbar-expand-*` class entirely.
      *
      * @link https://getbootstrap.com/docs/5.2/components/navbar/#offcanvas
+     *
+     * @throws ReflectionException
      */
     public function testOffCanvas(): void
     {
@@ -204,6 +210,8 @@ final class ResponsiveBehaviorsTest extends TestCase
      * toggler. Below are examples of different toggle styles.
      *
      * @link https://getbootstrap.com/docs/5.2/components/navbar/#toggler
+     *
+     * @throws ReflectionException
      */
     public function testToggler(): void
     {
@@ -268,6 +276,7 @@ final class ResponsiveBehaviorsTest extends TestCase
                 ->template('{containerMenu}{toggle}')
                 ->begin() .
                 Nav::create(config: $definitions)
+                    ->class('collapse navbar-collapse')
                     ->currentPath('/home')
                     ->id('navbarTogglerDemo01')
                     ->items([
@@ -335,6 +344,7 @@ final class ResponsiveBehaviorsTest extends TestCase
                 ->class('navbar navbar-expand-lg bg-light')
                 ->begin() .
                 Nav::create(config: $definitions)
+                    ->class('collapse navbar-collapse')
                     ->currentPath('/home')
                     ->id('navbarTogglerDemo02')
                     ->items([
@@ -347,25 +357,6 @@ final class ResponsiveBehaviorsTest extends TestCase
         );
 
         // With a toggler on the left and brand name on the right:
-
-        $definitions = [
-            'menuDefinitions()' => [
-                [
-                    'afterAttributes()' => [['role' => 'search']],
-                    'afterClass()' => ['d-flex'],
-                    'afterContent()' => [
-                        <<<HTML
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                        HTML,
-                    ],
-                    'afterTag()' => ['form'],
-                    'class()' => ['navbar-nav me-auto mb-2 mb-lg-0'],
-                    'itemsContainerClass()' => ['nav-item'],
-                    'linkClass()' => ['nav-link'],
-                ],
-            ],
-        ];
 
         $assert->equalsWithoutLE(
             <<<HTML
@@ -403,6 +394,7 @@ final class ResponsiveBehaviorsTest extends TestCase
                 ->template('{containerMenu}{toggle}{brand}')
                 ->begin() .
                 Nav::create(config: $definitions)
+                    ->class('collapse navbar-collapse')
                     ->currentPath('/home')
                     ->id('navbarTogglerDemo03')
                     ->items([
