@@ -164,7 +164,7 @@ final class SupportedContentTest extends TestCase
 
     /**
      * Navbar navigation links build on our `.nav` options with their own modifier class and require the use of toggler
-     * classes for proper responsive styling. Navigation in navbars will also grow to occupy as much horizontal space
+     * classes for proper responsive styling. Navigation in navbar will also grow to occupy as much horizontal space
      * as possible to keep your navbar contents securely aligned.
      *
      * Add the `.active` class on `.nav-link` to indicate the current page.
@@ -236,7 +236,7 @@ final class SupportedContentTest extends TestCase
     }
 
     /**
-     * Navbars come with built-in support for a handful of subcomponents. Choose from the following as needed:
+     * Navbar come with built-in support for a handful of subcomponents. Choose from the following as needed:
      * `.navbar-brand` for your company, product, or project name.
      * `.navbar-nav` for a full-height and lightweight navigation (including support for dropdowns).
      * `.navbar-toggler` for use with our collapse plugin and other navigation toggling behaviors.
@@ -358,7 +358,7 @@ final class SupportedContentTest extends TestCase
     }
 
     /**
-     * Navbars may contain bits of text with the help of `.navbar-text`.
+     * Navbar may contain bits of text with the help of `.navbar-text`.
      *
      * This class adjusts vertical alignment and horizontal spacing for strings of text.
      *

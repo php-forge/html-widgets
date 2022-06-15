@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Forge\Html\Widgets\Tests\Components\Nav;
+namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Nav;
 
 use Forge\Html\Widgets\Components\Nav;
 use Forge\TestUtils\Assert;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * Change the style of `.navs` component with modifiers and utilities. Mix and match as needed, or build your own.
@@ -21,6 +22,8 @@ final class AvaibleStylesTest extends TestCase
      * but not every nav item has the same width.
      *
      * @link https://getbootstrap.com/docs/5.2/components/navs-tabs/#fill-and-justify
+     *
+     * @throws ReflectionException
      */
     public function testFillAndJustify(): void
     {
@@ -70,6 +73,8 @@ final class AvaibleStylesTest extends TestCase
      * can easily change them to center or right aligned.
      *
      * Centered with `.justify-content-center`:
+     *
+     * @throws ReflectionException
      */
     public function testHorizontalAlignment(): void
     {
@@ -118,6 +123,8 @@ final class AvaibleStylesTest extends TestCase
      * Take that same HTML, but use `.nav-pills` instead:
      *
      * @link https://getbootstrap.com/docs/5.2/components/navs-tabs/#pills
+     *
+     * @throws ReflectionException
      */
     public function testPills(): void
     {
@@ -167,6 +174,8 @@ final class AvaibleStylesTest extends TestCase
      * tabbable regions with our tab JavaScript plugin.
      *
      * @link https://getbootstrap.com/docs/5.2/components/navs-tabs/#tabs
+     *
+     * @throws ReflectionException
      */
     public function testTabs(): void
     {
@@ -214,6 +223,8 @@ final class AvaibleStylesTest extends TestCase
     /**
      * Stack your navigation by changing the flex item direction with the `.flex-column` utility. Need to stack them on
      * some viewports but not others? Use the responsive versions (e.g., `.flex-sm-column`).
+     *
+     * @throws ReflectionException
      */
     public function testVertical(): void
     {

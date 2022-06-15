@@ -6,6 +6,7 @@ namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * The button plugin allows you to create simple on/off toggle buttons.
@@ -27,6 +28,8 @@ final class PluginTest extends TestCase
      * assistive technologies.
      *
      * @link https://getbootstrap.com/docs/5.2/components/buttons/#toggle-states
+     *
+     * @throws ReflectionException
      */
     public function testToggleStates(): void
     {

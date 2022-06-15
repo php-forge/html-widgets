@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Forge\Html\Widgets\Tests\Components\Nav;
+namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Nav;
 
 use Forge\Html\Widgets\Components\Nav;
 use Forge\TestUtils\Assert;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * Add dropdown menus with a little extra HTML and the dropdowns JavaScript plugin.
@@ -17,8 +18,10 @@ final class DropdownTest extends TestCase
 {
     /**
      * @link https://getbootstrap.com/docs/5.2/components/navs-tabs/#pills-with-dropdowns
+     *
+     * @throws ReflectionException
      */
-    public function testPillsWithdropdowns(): void
+    public function testPillsWithDropdowns(): void
     {
         $assert = new Assert();
 
@@ -109,6 +112,8 @@ final class DropdownTest extends TestCase
 
     /**
      * @link https://getbootstrap.com/docs/5.2/components/navs-tabs/#tabs-with-dropdowns
+     * 
+     * @throws ReflectionException
      */
     public function testTabsWithDropdowns(): void
     {

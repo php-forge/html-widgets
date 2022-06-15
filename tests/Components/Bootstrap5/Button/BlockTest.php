@@ -8,11 +8,14 @@ use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Components\Button;
 use Forge\TestUtils\Assert;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 final class BlockTest extends TestCase
 {
     /**
      * @link https://getbootstrap.com/docs/5.2/components/buttons/#block-buttons
+     *
+     * @throws ReflectionException
      */
     public function testBlock(): void
     {

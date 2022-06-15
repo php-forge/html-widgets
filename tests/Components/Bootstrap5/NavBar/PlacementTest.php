@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 use ReflectionException;
 
 /**
- * Use our position utilities to place navbars in non-static positions. Choose from fixed to the top, fixed to the
+ * Use our position utilities to place navbar in non-static positions. Choose from fixed to the top, fixed to the
  * bottom, stickied to the top (scrolls with the page until it reaches the top, then stays there), or stickied to the
  * bottom (scrolls with the page until it reaches the bottom, then stays there).
  *

@@ -6,6 +6,7 @@ namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * In need of a button, but not the hefty background colors they bring? Replace the default modifier classes with the
@@ -70,6 +71,8 @@ final class OutlinesTest extends TestCase
      * @param string $class The class to use for the button.
      * @param string $content The content to use for the button.
      * @param string $expected The expected HTML output.
+     *
+     * @throws ReflectionException
      */
     public function testOutlines(string $class, string $content, string $expected): void
     {

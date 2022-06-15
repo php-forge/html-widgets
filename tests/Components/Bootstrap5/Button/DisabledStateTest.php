@@ -6,11 +6,14 @@ namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 final class DisabledStateTest extends TestCase
 {
     /**
      * @link https://getbootstrap.com/docs/5.2/components/buttons/#disabled-state
+     *
+     * @throws ReflectionException
      */
     public function testDisabledState(): void
     {
@@ -74,6 +77,8 @@ final class DisabledStateTest extends TestCase
      * prevent them from receiving keyboard focus, and use custom JavaScript to disable their functionality altogether.
      *
      * @link https://getbootstrap.com/docs/5.2/components/buttons/#link-functionality-caveat
+     *
+     * @throws ReflectionException
      */
     public function testLinkFunctionalityCaveat(): void
     {

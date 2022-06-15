@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Forge\Html\Widgets\Tests\Components\Nav;
+namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Nav;
 
 use Forge\Html\Widgets\Components\Nav;
 use Forge\TestUtils\Assert;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * Navigation available in Bootstrap share general markup and styles, from the base `.nav` class to the active and
@@ -26,6 +27,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class BaseTest extends TestCase
 {
+    /**
+     * @throws ReflectionException
+     */
     public function testBase(): void
     {
         $assert = new Assert();

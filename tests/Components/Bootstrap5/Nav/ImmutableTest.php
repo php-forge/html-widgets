@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Forge\Html\Widgets\Tests\Components\Nav;
+namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Nav;
 
 use Forge\Html\Widgets\Components\Nav;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +26,7 @@ final class ImmutableTest extends TestCase
         $this->assertNotSame($nav, $nav->menuArguments([]));
         $this->assertNotSame($nav, $nav->menuConfigFile(''));
         $this->assertNotSame($nav, $nav->menuDefinitions([]));
-        $this->assertNotSame($nav, $nav->offCanvas([]));
+        $this->assertNotSame($nav, $nav->offCanvas());
         $this->assertNotSame($nav, $nav->offCanvasAttributes([]));
         $this->assertNotSame($nav, $nav->offCanvasClass(''));
         $this->assertNotSame($nav, $nav->offCanvasHeaderAttributes([]));

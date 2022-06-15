@@ -6,6 +6,7 @@ namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * Fancy larger or smaller buttons? Add `.btn-lg` or `.btn-sm` for additional sizes.
@@ -16,6 +17,8 @@ final class SizesTest extends TestCase
 {
     /**
      * You can even roll your own custom sizing with CSS variables.
+     *
+     * @throws ReflectionException
      */
     public function testCustom(): void
     {
@@ -27,6 +30,9 @@ final class SizesTest extends TestCase
         );
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testLarge(): void
     {
         $this->assertSame(
@@ -40,6 +46,9 @@ final class SizesTest extends TestCase
         );
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testSmall(): void
     {
         $this->assertSame(

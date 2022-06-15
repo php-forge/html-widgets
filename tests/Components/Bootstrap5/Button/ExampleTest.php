@@ -6,6 +6,7 @@ namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * Bootstrap includes several predefined button styles, each serving its own semantic purpose, with a few extras thrown
@@ -41,6 +42,8 @@ final class ExampleTest extends TestCase
      * @param string $class The class to use for the button.
      * @param string $content The content to use for the button.
      * @param string $expected The expected HTML output.
+     *
+     * @throws ReflectionException
      */
     public function testButton(string $class, string $content, string $expected): void
     {

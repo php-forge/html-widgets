@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Forge\Html\Widgets\Tests\Components\Nav;
+namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Nav;
 
 use Forge\Html\Widgets\Components\Nav;
 use Forge\Html\Widgets\Components\NavBar;
 use Forge\TestUtils\Assert;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * If you need responsive nav variations, consider using a series of flexbox utilities. While more verbose, these
@@ -19,6 +20,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class FlexUtilitiesTest extends TestCase
 {
+    /**
+     * @throws ReflectionException
+     */
     public function testFlexUtilities(): void
     {
         $assert = new Assert();

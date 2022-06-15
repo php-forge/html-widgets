@@ -7,6 +7,7 @@ namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 use Forge\Html\Tag\Form\Input;
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 
 /**
  * The `.btn` classes are designed to be used with the `<button>` element. However, you can also use these classes on
@@ -20,6 +21,9 @@ use PHPUnit\Framework\TestCase;
  */
 final class TagsTest extends TestCase
 {
+    /**
+     * @throws ReflectionException
+     */
     public function testButtonTags(): void
     {
         $input = new Input();
