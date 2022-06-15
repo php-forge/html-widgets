@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\CssClass;
+use Forge\Html\Helper\Encode;
 use Forge\Html\Widgets\Attribute\Globals;
 use Forge\Html\Widgets\Helper\Normalize;
 use ReflectionException;
@@ -91,7 +93,7 @@ final class Menu extends Globals
     public function afterClass(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->afterAttributes, $value);
+        CssClass::add($new->afterAttributes, $value);
         return $new;
     }
 
@@ -161,7 +163,7 @@ final class Menu extends Globals
     public function beforeClass(string $value): self
     {
         $new = clone $this;
-        $this->cssClass->add($new->beforeAttributes, $value);
+        CssClass::add($new->beforeAttributes, $value);
         return $new;
     }
 
@@ -203,7 +205,7 @@ final class Menu extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->attributes, $value);
+        CssClass::add($new->attributes, $value);
         return $new;
     }
 
@@ -289,7 +291,7 @@ final class Menu extends Globals
     public function dropdownContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->dropdownContainerAttributes, $value);
+        CssClass::add($new->dropdownContainerAttributes, $value);
         return $new;
     }
 
@@ -391,7 +393,7 @@ final class Menu extends Globals
     public function itemsContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->itemsContainerAttributes, $value);
+        CssClass::add($new->itemsContainerAttributes, $value);
         return $new;
     }
 
@@ -566,19 +568,19 @@ final class Menu extends Globals
         $label = $item['label'];
         /** @var array */
         $linkAttributes = $item['linkAttributes'] ?? [];
-        $this->cssClass->add($linkAttributes, $this->linkClass);
+        CssClass::add($linkAttributes, $this->linkClass);
 
         if ($item['active']) {
             $linkAttributes['aria-current'] = 'page';
-            $this->cssClass->add($linkAttributes, $this->activeClass);
+            CssClass::add($linkAttributes, $this->activeClass);
         }
 
         if ($item['disabled']) {
-            $this->cssClass->add($linkAttributes, $this->disabledClass);
+            CssClass::add($linkAttributes, $this->disabledClass);
         }
 
         if ($item['encodeLabel']) {
-            $label = $this->encode->content($label);
+            $label = Encode::content($label);
         }
 
         if (isset($item['link'])) {
@@ -628,11 +630,11 @@ final class Menu extends Globals
                 );
 
                 if ($i === 0 && $this->firstItemClass !== '') {
-                    $this->cssClass->add($itemsContainerAttributes, $this->firstItemClass);
+                    CssClass::add($itemsContainerAttributes, $this->firstItemClass);
                 }
 
                 if ($i === $n - 1 && $this->lastItemClass !== '') {
-                    $this->cssClass->add($itemsContainerAttributes, $this->lastItemClass);
+                    CssClass::add($itemsContainerAttributes, $this->lastItemClass);
                 }
 
                 $menu = $this->renderItem($item);

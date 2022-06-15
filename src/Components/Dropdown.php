@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\CssClass;
 use Forge\Html\Widgets\Attribute\Globals;
 use Forge\Html\Widgets\Helper\Normalize;
 use ReflectionException;
@@ -143,7 +144,7 @@ final class Dropdown extends Globals
     public function dividerClass(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->dividerAttributes, $value);
+        CssClass::add($new->dividerAttributes, $value);
         return $new;
     }
 
@@ -241,7 +242,7 @@ final class Dropdown extends Globals
     public function itemContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->itemContainerAttributes, $value);
+        CssClass::add($new->itemContainerAttributes, $value);
         return $new;
     }
 
@@ -329,7 +330,7 @@ final class Dropdown extends Globals
     public function itemsContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->itemsContainerAttributes, $value);
+        CssClass::add($new->itemsContainerAttributes, $value);
         return $new;
     }
 
@@ -357,7 +358,7 @@ final class Dropdown extends Globals
     public function splitButtonClass(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->splitButtonAttributes, $value);
+        CssClass::add($new->splitButtonAttributes, $value);
         return $new;
     }
 
@@ -371,7 +372,7 @@ final class Dropdown extends Globals
     public function splitButtonSpanClass(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->splitButtonSpanAttributes, $value);
+        CssClass::add($new->splitButtonSpanAttributes, $value);
         return $new;
     }
 
@@ -399,7 +400,7 @@ final class Dropdown extends Globals
     public function toggleClass(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->toggleAttributes, $value);
+        CssClass::add($new->toggleAttributes, $value);
         return $new;
     }
 
@@ -427,7 +428,7 @@ final class Dropdown extends Globals
         $items = Normalize::dropdown($this->items);
         $items = $this->renderItems($items);
 
-        $this->cssClass->add($containerAttributes, $this->containerClass);
+        CssClass::add($containerAttributes, $this->containerClass);
 
         return match ($this->container) {
             true => $this->tag->create($this->containerTag, $items, $containerAttributes),
@@ -473,7 +474,7 @@ final class Dropdown extends Globals
     {
         $itemContainerAttributes = $this->itemContainerAttributes;
 
-        $this->cssClass->add($headerAttributes, $this->headerClass);
+        CssClass::add($headerAttributes, $this->headerClass);
 
         return $this->tag->create(
             $this->itemContainerTag,
@@ -522,15 +523,15 @@ final class Dropdown extends Globals
         /** @var array */
         $toggleAttributes = $item['toggleAttributes'] ?? [];
 
-        $this->cssClass->add($linkAttributes, $this->itemClass);
+        CssClass::add($linkAttributes, $this->itemClass);
 
         if ($item['active']) {
             $linkAttributes['aria-current'] = 'true';
-            $this->cssClass->add($linkAttributes, [$this->activeClass]);
+            CssClass::add($linkAttributes, [$this->activeClass]);
         }
 
         if ($item['disabled']) {
-            $this->cssClass->add($linkAttributes, $this->disabledClass);
+            CssClass::add($linkAttributes, $this->disabledClass);
         }
 
         if ($items === []) {
@@ -616,7 +617,7 @@ final class Dropdown extends Globals
     ): string {
         $html = '';
 
-        $this->cssClass->add($iconAttributes, $iconClass);
+        CssClass::add($iconAttributes, $iconClass);
 
         if ($icon !== '' || $iconClass !== '') {
             $i = $this->tag->create('i', $icon, $iconAttributes);

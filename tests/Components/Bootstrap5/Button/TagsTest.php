@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Tests\Components\Bootstrap5\Button;
 
-use Forge\Html\Tag\Form\Input;
+use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Components\Button;
 use PHPUnit\Framework\TestCase;
 use ReflectionException;
@@ -26,7 +26,8 @@ final class TagsTest extends TestCase
      */
     public function testButtonTags(): void
     {
-        $input = new Input();
+        $tag = new tag();
+
         // Button `a` tag with `button` type.
         $this->assertSame(
             '<a class="btn btn-primary" href="#" role="button">Link</a>',
@@ -40,12 +41,21 @@ final class TagsTest extends TestCase
         );
 
         // Input button
-        $this->assertSame('<input type="button" value="Input">', $input->create('button', ['value' => 'Input']));
+        $this->assertSame(
+            '<input type="button" value="Input">',
+            $tag->create('input', '', ['type' => 'button', 'value' => 'Input']),
+        );
 
         // Input submit button
-        $this->assertSame('<input type="submit" value="Submit">', $input->create('submit', ['value' => 'Submit']));
+        $this->assertSame(
+            '<input type="submit" value="Submit">',
+            $tag->create('input', '', ['type' => 'submit', 'value' => 'Submit']),
+        );
 
         // Input reset button
-        $this->assertSame('<input type="reset" value="Reset">', $input->create('reset', ['value' => 'Reset']));
+        $this->assertSame(
+            '<input type="reset" value="Reset">',
+            $tag->create('input', '', ['type' => 'reset', 'value' => 'Reset']),
+        );
     }
 }

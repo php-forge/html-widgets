@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\CssClass;
 use Forge\Html\Widgets\Attribute\Globals;
 use Forge\Html\Widgets\Helper\Utils;
 
@@ -48,7 +49,7 @@ final class Nav extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->attributes, $value);
+        CssClass::add($new->attributes, $value);
         return $new;
     }
 
@@ -462,7 +463,7 @@ final class Nav extends Globals
             $offCanvasAttributes['aria-labelledby'] = $this->offCanvasHeaderTitleId;
         }
 
-        $this->cssClass->add($offCanvasAttributes, $this->offCanvasClass);
+        CssClass::add($offCanvasAttributes, $this->offCanvasClass);
 
         if ($this->offCanvasId !== '') {
             $offCanvasAttributes['id'] = $this->offCanvasId;
@@ -488,7 +489,7 @@ final class Nav extends Globals
         $html = '';
         $offCanvasHeaderAttributes = $this->offCanvasHeaderAttributes;
 
-        $this->cssClass->add($offCanvasHeaderAttributes, $this->offCanvasHeaderClass);
+        CssClass::add($offCanvasHeaderAttributes, $this->offCanvasHeaderClass);
 
         if ($this->renderOffCanvasHeaderTitle() !== '') {
             $html .= $this->renderOffCanvasHeaderTitle();
@@ -514,7 +515,7 @@ final class Nav extends Globals
             $offCanvasHeaderButtonAttributes['data-bs-dismiss'] = 'offcanvas';
         }
 
-        $this->cssClass->add($offCanvasHeaderButtonAttributes, $this->offCanvasHeaderButtonClass);
+        CssClass::add($offCanvasHeaderButtonAttributes, $this->offCanvasHeaderButtonClass);
 
         return PHP_EOL .
             $this->tag->create(
@@ -532,7 +533,7 @@ final class Nav extends Globals
             $offCanvasHeaderTitleAttributes['id'] = $this->offCanvasHeaderTitleId;
         }
 
-        $this->cssClass->add($offCanvasHeaderTitleAttributes, $this->offCanvasHeaderTitleClass);
+        CssClass::add($offCanvasHeaderTitleAttributes, $this->offCanvasHeaderTitleClass);
 
         return $this->tag->create(
             $this->offCanvasHeaderTitleTag,
