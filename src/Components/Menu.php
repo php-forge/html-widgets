@@ -38,13 +38,11 @@ use function strtr;
 final class Menu extends Globals
 {
     private array $afterAttributes = [];
-    private string $afterClass = '';
     private string $afterContent = '';
     private string $afterTag = 'span';
     private string $activeClass = 'active';
     private bool $activateItems = true;
     private array $beforeAttributes = [];
-    private string $beforeClass = '';
     private string $beforeContent = '';
     private string $beforeTag = 'span';
     private bool $container = true;
@@ -55,14 +53,12 @@ final class Menu extends Globals
     private string $dropdownConfigFile = '';
     private bool $dropdownContainer = true;
     private array $dropdownContainerAttributes = [];
-    private string $dropdownContainerClass = '';
     private string $dropdownContainerTag = 'li';
     private array $dropdownDefinitions = [];
     private string $firstItemClass = '';
     private array $items = [];
     private bool $itemsContainer = true;
     private array $itemsContainerAttributes = [];
-    private string $itemsContainerClass = '';
     private string $itemsTag = 'li';
     private string $labelTemplate = '{label}';
     private string $lastItemClass = '';
@@ -88,14 +84,14 @@ final class Menu extends Globals
     /**
      * Returns a new instance with the specified after container class.
      *
-     * @param string $class The class name.
+     * @param string $value The class name.
      *
      * @return self
      */
-    public function afterClass(string $class): self
+    public function afterClass(string $value): self
     {
         $new = clone $this;
-        $new->afterClass = $class;
+        $new->cssClass->add($new->afterAttributes, $value);
         return $new;
     }
 
@@ -165,7 +161,7 @@ final class Menu extends Globals
     public function beforeClass(string $value): self
     {
         $new = clone $this;
-        $new->beforeClass = $value;
+        $this->cssClass->add($new->beforeAttributes, $value);
         return $new;
     }
 
@@ -293,7 +289,7 @@ final class Menu extends Globals
     public function dropdownContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->dropdownContainerClass = $value;
+        $new->cssClass->add($new->dropdownContainerAttributes, $value);
         return $new;
     }
 
@@ -395,7 +391,7 @@ final class Menu extends Globals
     public function itemsContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->itemsContainerClass = $value;
+        $new->cssClass->add($new->itemsContainerAttributes, $value);
         return $new;
     }
 
@@ -527,16 +523,12 @@ final class Menu extends Globals
     {
         $afterAttributes = $this->afterAttributes;
 
-        $this->cssClass->add($afterAttributes, $this->afterClass);
-
         return PHP_EOL . $this->tag->create($this->afterTag, $this->afterContent, $afterAttributes);
     }
 
     private function renderBeforeContent(): string
     {
         $beforeAttributes = $this->beforeAttributes;
-
-        $this->cssClass->add($beforeAttributes, $this->beforeClass);
 
         return $this->tag->create($this->beforeTag, $this->beforeContent, $beforeAttributes);
     }
@@ -547,7 +539,6 @@ final class Menu extends Globals
     private function renderDropdown(array $items): string
     {
         $dropdownContainerAttributes = $this->dropdownContainerAttributes;
-        $this->cssClass->add($dropdownContainerAttributes, $this->dropdownContainerClass);
 
         $dropdown = Dropdown::create($this->dropdownConfigFile, $this->dropdownDefinitions, $this->dropdownArguments)
             ->items($items)
@@ -635,8 +626,6 @@ final class Menu extends Globals
                     $this->itemsContainerAttributes,
                     $item['itemsContainerAttributes'] ?? [],
                 );
-
-                $this->cssClass->add($itemsContainerAttributes, $this->itemsContainerClass);
 
                 if ($i === 0 && $this->firstItemClass !== '') {
                     $this->cssClass->add($itemsContainerAttributes, $this->firstItemClass);

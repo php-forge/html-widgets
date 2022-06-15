@@ -19,7 +19,6 @@ final class Dropdown extends Globals
     private string $containerTag = 'div';
     private string $disabledClass = 'disabled';
     private array $dividerAttributes = [];
-    private string $dividerClass = '';
     private string $dividerTag = 'hr';
     private string $headerClass = '';
     private string $headerTag = 'span';
@@ -27,18 +26,13 @@ final class Dropdown extends Globals
     private string $itemTag = 'a';
     private bool $itemContainer = true;
     private array $itemContainerAttributes = [];
-    private string $itemContainerClass = '';
     private string $itemContainerTag = 'li';
     private array $items = [];
     private array $itemsContainerAttributes = [];
-    private string $itemsContainerClass = '';
     private string $itemsContainerTag = 'ul';
     private array $splitButtonAttributes = [];
-    private string $splitButtonClass = '';
     private array $splitButtonSpanAttributes = [];
-    private string $splitButtonSpanClass = '';
     private array $toggleAttributes = [];
-    private string $toggleClass = '';
     private string $toggleType = 'button';
 
     /**
@@ -149,7 +143,7 @@ final class Dropdown extends Globals
     public function dividerClass(string $value): self
     {
         $new = clone $this;
-        $new->dividerClass = $value;
+        $new->cssClass->add($new->dividerAttributes, $value);
         return $new;
     }
 
@@ -247,7 +241,7 @@ final class Dropdown extends Globals
     public function itemContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->itemContainerClass = $value;
+        $new->cssClass->add($new->itemContainerAttributes, $value);
         return $new;
     }
 
@@ -312,6 +306,20 @@ final class Dropdown extends Globals
     }
 
     /**
+     * Returns a new instance with the specified items container HTML attributes.
+     *
+     * @param array $values Attribute values indexed by attribute names.
+     *
+     * @return self
+     */
+    public function itemsContainerAttributes(array $values): self
+    {
+        $new = clone $this;
+        $new->itemsContainerAttributes = $values;
+        return $new;
+    }
+
+    /**
      * Returns a new instance with the specified item container class.
      *
      * @param string $value The item container class.
@@ -321,7 +329,7 @@ final class Dropdown extends Globals
     public function itemsContainerClass(string $value): self
     {
         $new = clone $this;
-        $new->itemsContainerClass = $value;
+        $new->cssClass->add($new->itemsContainerAttributes, $value);
         return $new;
     }
 
@@ -349,7 +357,7 @@ final class Dropdown extends Globals
     public function splitButtonClass(string $value): self
     {
         $new = clone $this;
-        $new->splitButtonClass = $value;
+        $new->cssClass->add($new->splitButtonAttributes, $value);
         return $new;
     }
 
@@ -363,7 +371,7 @@ final class Dropdown extends Globals
     public function splitButtonSpanClass(string $value): self
     {
         $new = clone $this;
-        $new->splitButtonSpanClass = $value;
+        $new->cssClass->add($new->splitButtonSpanAttributes, $value);
         return $new;
     }
 
@@ -391,7 +399,7 @@ final class Dropdown extends Globals
     public function toggleClass(string $value): self
     {
         $new = clone $this;
-        $new->toggleClass = $value;
+        $new->cssClass->add($new->toggleAttributes, $value);
         return $new;
     }
 
@@ -431,7 +439,6 @@ final class Dropdown extends Globals
     {
         $dividerAttributes = $this->dividerAttributes;
         $itemContainerAttributes = $this->itemContainerAttributes;
-        $this->cssClass->add($dividerAttributes, $this->dividerClass);
 
         return $this->tag->create(
             $this->itemContainerTag,
@@ -448,17 +455,16 @@ final class Dropdown extends Globals
         return self::create()
             ->attributes($itemsAttributes)
             ->container(false)
-            ->dividerClass($this->dividerClass)
+            ->dividerAttributes($this->dividerAttributes)
             ->headerClass($this->headerClass)
             ->headerTag($this->headerTag)
             ->itemClass($this->itemClass)
-            ->itemContainerClass($this->itemContainerClass)
+            ->itemContainerAttributes($this->itemContainerAttributes)
             ->itemContainerTag($this->itemContainerTag)
             ->itemTag($this->itemTag)
             ->items($items)
-            ->itemsContainerClass($this->itemsContainerClass)
+            ->itemsContainerAttributes($this->itemsContainerAttributes)
             ->toggleAttributes($this->toggleAttributes)
-            ->toggleClass($this->toggleClass)
             ->toggleType($this->toggleType)
             ->render();
     }
@@ -561,8 +567,6 @@ final class Dropdown extends Globals
             $itemsContainerAttributes['aria-labelledby'] = $this->attributes['id'];
         }
 
-        $this->cssClass->add($itemsContainerAttributes, $this->itemsContainerClass);
-
         return $this->tag->create(
             $this->itemsContainerTag,
             $this->renderDropdown($items, $itemsContainerAttributes),
@@ -633,7 +637,6 @@ final class Dropdown extends Globals
     ): string {
         $itemContainerAttributes = $this->itemContainerAttributes;
         $linkAttributes['href'] = $link;
-        $this->cssClass->add($itemContainerAttributes, $this->itemContainerClass);
 
         $a = $this->tag->create($this->itemTag, $label, $linkAttributes);
 
@@ -671,8 +674,6 @@ final class Dropdown extends Globals
     {
         $toggleAttributes['type'] = 'button';
 
-        $this->cssClass->add($toggleAttributes, $this->toggleClass);
-
         return Button::create()->attributes($toggleAttributes)->content($label)->render();
     }
 
@@ -682,8 +683,6 @@ final class Dropdown extends Globals
     private function renderToggleLink(string $label, string $link, array $toggleAttributes = []): string
     {
         $toggleAttributes['href'] = $link;
-
-        $this->cssClass->add($toggleAttributes, $this->toggleClass);
 
         return Button::create()->attributes($toggleAttributes)->content($label)->type('link')->render();
     }
@@ -695,9 +694,6 @@ final class Dropdown extends Globals
     {
         $splitButtonSpanAttributes = $this->splitButtonSpanAttributes;
         $toggleAttributes['type'] = 'button';
-
-        $this->cssClass->add($splitButtonSpanAttributes, $this->splitButtonSpanClass);
-        $this->cssClass->add($toggleAttributes, $this->toggleClass);
 
         return Button::create()
             ->attributes($toggleAttributes)
@@ -712,8 +708,6 @@ final class Dropdown extends Globals
     {
         $splitButtonAttributes = $this->splitButtonAttributes;
         $splitButtonAttributes['type'] = 'button';
-
-        $this->cssClass->add($splitButtonAttributes, $this->splitButtonClass);
 
         return Button::create()->attributes($splitButtonAttributes)->content($label)->render();
     }

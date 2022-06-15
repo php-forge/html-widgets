@@ -311,7 +311,7 @@ final class SupportedContentTest extends TestCase
             <li class="nav-item">
             <a class="dropdown-item" href="#">Another action</a>
             </li>
-            <li>
+            <li class="nav-item">
             <hr class="dropdown-divider">
             </li>
             <li class="nav-item">
