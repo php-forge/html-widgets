@@ -47,7 +47,6 @@ final class Menu extends Globals
     private string $beforeClass = '';
     private string $beforeContent = '';
     private string $beforeTag = 'span';
-    private string $class = '';
     private bool $container = true;
     private string $currentPath = '';
     private string $disabledClass = 'disabled';
@@ -208,7 +207,7 @@ final class Menu extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->class = $value;
+        $new->cssClass->add($new->attributes, $value);
         return $new;
     }
 
@@ -667,8 +666,6 @@ final class Menu extends Globals
         $afterContent = '';
         $attributes = $this->attributes;
         $beforeContent = '';
-
-        $this->cssClass->add($attributes, $this->class);
 
         $content = $this->renderItems($items);
 

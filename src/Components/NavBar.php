@@ -29,7 +29,6 @@ final class NavBar extends Globals
     private array $buttonToggleAttributes = [];
     private string $buttonToggleClass = '';
     private string $buttonToggleContent = '<span class="navbar-toggler-icon"></span>';
-    private string $class = 'navbar';
     private bool $container = false;
     private array $containerAttributes = [];
     private string $containerClass = 'container';
@@ -234,7 +233,7 @@ final class NavBar extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->class = $value;
+        $new->cssClass->add($new->attributes, $value);
         return $new;
     }
 
@@ -373,7 +372,6 @@ final class NavBar extends Globals
         $content = '';
         $parts = ['{brand}' => '', '{containerMenu}' => '', '{toggle}' => ''];
 
-        $this->cssClass->add($attributes, $this->class);
         $this->cssClass->add($containerAttributes, $this->containerClass);
 
         $content .= $this->tag->begin($this->tagName, $attributes);

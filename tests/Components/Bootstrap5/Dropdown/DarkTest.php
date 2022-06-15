@@ -151,6 +151,7 @@ final class DarkTest extends TestCase
                 ->class('navbar navbar-expand-lg navbar-dark bg-dark')
                 ->begin() .
                 Nav::create(config: $definitions)
+                    ->class('collapse navbar-collapse')
                     ->currentPath('/home')
                     ->id('navbarNavDarkDropdown')
                     ->items([

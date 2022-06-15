@@ -58,6 +58,7 @@ final class ResponsiveBehaviorsTest extends TestCase
                 ->buttonToggle(true)
                 ->buttonToggleClass('navbar-toggler')
                 ->buttonToggleId('navbarToggleExternalContent')
+                ->class('navbar')
                 ->begin() .
             NavBar::end()
         );
@@ -275,6 +276,7 @@ final class ResponsiveBehaviorsTest extends TestCase
                 ->template('{containerMenu}{toggle}')
                 ->begin() .
                 Nav::create(config: $definitions)
+                    ->class('collapse navbar-collapse')
                     ->currentPath('/home')
                     ->id('navbarTogglerDemo01')
                     ->items([
@@ -342,6 +344,7 @@ final class ResponsiveBehaviorsTest extends TestCase
                 ->class('navbar navbar-expand-lg bg-light')
                 ->begin() .
                 Nav::create(config: $definitions)
+                    ->class('collapse navbar-collapse')
                     ->currentPath('/home')
                     ->id('navbarTogglerDemo02')
                     ->items([
@@ -391,6 +394,7 @@ final class ResponsiveBehaviorsTest extends TestCase
                 ->template('{containerMenu}{toggle}{brand}')
                 ->begin() .
                 Nav::create(config: $definitions)
+                    ->class('collapse navbar-collapse')
                     ->currentPath('/home')
                     ->id('navbarTogglerDemo03')
                     ->items([

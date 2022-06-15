@@ -9,7 +9,6 @@ use Forge\Html\Widgets\Helper\Utils;
 
 final class Nav extends Globals
 {
-    private string $class = 'collapse navbar-collapse';
     private bool $container = true;
     private string $currentPath = '';
     /** @psalm-var array<int, mixed> */
@@ -49,7 +48,7 @@ final class Nav extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->class = $value;
+        $new->cssClass->add($new->attributes, $value);
         return $new;
     }
 
@@ -423,8 +422,6 @@ final class Nav extends Globals
     {
         $html = '';
         $attributes = $this->attributes;
-
-        $this->cssClass->add($attributes, $this->class);
 
         if ($this->renderMenu() !== '') {
             if ($this->container) {

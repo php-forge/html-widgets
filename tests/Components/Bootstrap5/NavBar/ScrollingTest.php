@@ -122,6 +122,7 @@ final class ScrollingTest extends TestCase
                 ->class('navbar navbar-expand-lg bg-light')
                 ->begin() .
                 Nav::create(config: $definitions)
+                    ->class('collapse navbar-collapse')
                     ->currentPath('/home')
                     ->id('navbarText')
                     ->items([
