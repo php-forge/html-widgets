@@ -162,7 +162,6 @@ final class AvaibleStylesTest extends TestCase
         );
     }
 
-
     /**
      * Takes the basic nav from above and adds the `.nav-tabs` class to generate a tabbed interface. Use them to create
      * tabbable regions with our tab JavaScript plugin.
