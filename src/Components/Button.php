@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\CssClass;
 use Forge\Html\Widgets\Attribute\Globals;
 
 final class Button extends Globals
@@ -23,7 +24,7 @@ final class Button extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->attributes, $value);
+        CssClass::add($new->attributes, $value);
         return $new;
     }
 
@@ -108,7 +109,7 @@ final class Button extends Globals
     private function renderButtonLink(array $attributes): string
     {
         if ($this->disabled) {
-            $this->cssClass->add($attributes, 'disabled');
+            CssClass::add($attributes, 'disabled');
             $attributes['aria-disabled'] = 'true';
         }
 

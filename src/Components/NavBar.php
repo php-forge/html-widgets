@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Element\Button;
 use Forge\Html\Widgets\Attribute\Globals;
 use Forge\Html\Widgets\Helper\Utils;
@@ -233,7 +234,7 @@ final class NavBar extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        $new->cssClass->add($new->attributes, $value);
+        CssClass::add($new->attributes, $value);
         return $new;
     }
 
@@ -372,7 +373,7 @@ final class NavBar extends Globals
         $content = '';
         $parts = ['{brand}' => '', '{containerMenu}' => '', '{toggle}' => ''];
 
-        $this->cssClass->add($containerAttributes, $this->containerClass);
+        CssClass::add($containerAttributes, $this->containerClass);
 
         $content .= $this->tag->begin($this->tagName, $attributes);
 
@@ -413,7 +414,7 @@ final class NavBar extends Globals
         $brandAttributes = $this->brandAttributes;
         $brandImageAttributes = $this->brandImageAttributes;
 
-        $this->cssClass->add($brandAttributes, $this->brandClass);
+        CssClass::add($brandAttributes, $this->brandClass);
 
         if (!isset($brandAttributes['href'])) {
             $brandAttributes['href'] = $this->brandLink;
@@ -422,7 +423,7 @@ final class NavBar extends Globals
         if ($this->brandImage !== '') {
             $brandImageAttributes['src'] = $this->brandImage;
 
-            $this->cssClass->add($brandImageAttributes, $this->brandImageClass);
+            CssClass::add($brandImageAttributes, $this->brandImageClass);
 
             $brand = $this->tag->create('img', '', $brandImageAttributes);
         }
@@ -444,7 +445,7 @@ final class NavBar extends Globals
         $buttonToggleAttributes = $this->buttonToggleAttributes;
         /** @var string */
 
-        $this->cssClass->add($buttonToggleAttributes, $this->buttonToggleClass);
+        CssClass::add($buttonToggleAttributes, $this->buttonToggleClass);
 
         if (!array_key_exists('data-bs-toggle', $buttonToggleAttributes)) {
             $buttonToggleAttributes['data-bs-toggle'] = 'collapse';
@@ -476,7 +477,7 @@ final class NavBar extends Globals
     {
         $menuContainerAttributes = $this->menuContainerAttributes;
 
-        $this->cssClass->add($menuContainerAttributes, $this->menuContainerClass);
+        CssClass::add($menuContainerAttributes, $this->menuContainerClass);
 
         return PHP_EOL . $this->tag->begin($this->menuContainerTag, $menuContainerAttributes);
     }
