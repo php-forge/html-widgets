@@ -112,7 +112,7 @@ final class DropdownTest extends TestCase
 
     /**
      * @link https://getbootstrap.com/docs/5.2/components/navs-tabs/#tabs-with-dropdowns
-     * 
+     *
      * @throws ReflectionException
      */
     public function testTabsWithDropdowns(): void
