@@ -11,6 +11,9 @@ use ReflectionException;
 
 final class IconTest extends TestCase
 {
+    /**
+     * @throws ReflectionException
+     */
     public function testIcon(): void
     {
         $assert = new Assert();
