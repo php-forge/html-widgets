@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Helper\CssClass;
+use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
 use Forge\Html\Widgets\Helper\Utils;
 
@@ -50,6 +51,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         CssClass::add($new->attributes, $value);
+
         return $new;
     }
 
@@ -64,6 +66,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->container = $value;
+
         return $new;
     }
 
@@ -78,6 +81,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->currentPath = $value;
+
         return $new;
     }
 
@@ -94,6 +98,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->dropdownArguments = $values;
+
         return $new;
     }
 
@@ -108,6 +113,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->dropdownConfigFile = $value;
+
         return $new;
     }
 
@@ -122,6 +128,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->dropdownDefinitions = $values;
+
         return $new;
     }
 
@@ -152,6 +159,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->items = $values;
+
         return $new;
     }
 
@@ -168,6 +176,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->menuArguments = $values;
+
         return $new;
     }
 
@@ -182,6 +191,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->menuConfigFile = $value;
+
         return $new;
     }
 
@@ -196,6 +206,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->menuDefinitions = $values;
+
         return $new;
     }
 
@@ -208,6 +219,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvas = true;
+
         return $new;
     }
 
@@ -222,6 +234,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasAttributes = $values;
+
         return $new;
     }
 
@@ -236,6 +249,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasClass = $value;
+
         return $new;
     }
 
@@ -250,6 +264,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderAttributes = $values;
+
         return $new;
     }
 
@@ -264,6 +279,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderButtonClass = $value;
+
         return $new;
     }
 
@@ -278,6 +294,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderButtonContent = $value;
+
         return $new;
     }
 
@@ -292,6 +309,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderButtonTag = $value;
+
         return $new;
     }
 
@@ -306,6 +324,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderClass = $value;
+
         return $new;
     }
 
@@ -320,6 +339,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderTag = $value;
+
         return $new;
     }
 
@@ -334,6 +354,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderTitleAttributes = $values;
+
         return $new;
     }
 
@@ -348,6 +369,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderTitleClass = $value;
+
         return $new;
     }
 
@@ -362,6 +384,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderTitleContent = $value;
+
         return $new;
     }
 
@@ -376,6 +399,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderTitleId = $value;
+
         return $new;
     }
 
@@ -383,6 +407,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasHeaderTitleTag = $value;
+
         return $new;
     }
 
@@ -397,6 +422,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasId = $value;
+
         return $new;
     }
 
@@ -411,6 +437,7 @@ final class Nav extends Globals
     {
         $new = clone $this;
         $new->offCanvasTag = $value;
+
         return $new;
     }
 
@@ -426,7 +453,7 @@ final class Nav extends Globals
 
         if ($this->renderMenu() !== '') {
             if ($this->container) {
-                $html .= $this->tag->create('div', $this->renderMenu(), $attributes) . PHP_EOL;
+                $html .= Tag::create('div', $this->renderMenu(), $attributes) . PHP_EOL;
             } else {
                 $html .= $this->renderMenu();
             }
@@ -481,7 +508,7 @@ final class Nav extends Globals
             $html .= PHP_EOL . $this->renderContainer();
         }
 
-        return $this->tag->create($this->offCanvasTag, $html, $offCanvasAttributes) . PHP_EOL;
+        return Tag::create($this->offCanvasTag, $html, $offCanvasAttributes) . PHP_EOL;
     }
 
     private function renderOffCanvasHeader(): string
@@ -499,7 +526,7 @@ final class Nav extends Globals
             $html .= $this->renderOffCanvasHeaderButton();
         }
 
-        return $this->tag->create($this->offCanvasHeaderTag, $html, $offCanvasHeaderAttributes);
+        return Tag::create($this->offCanvasHeaderTag, $html, $offCanvasHeaderAttributes);
     }
 
     private function renderOffCanvasHeaderButton(): string
@@ -518,7 +545,7 @@ final class Nav extends Globals
         CssClass::add($offCanvasHeaderButtonAttributes, $this->offCanvasHeaderButtonClass);
 
         return PHP_EOL .
-            $this->tag->create(
+            Tag::create(
                 $this->offCanvasHeaderButtonTag,
                 $this->offCanvasHeaderButtonContent,
                 $offCanvasHeaderButtonAttributes,
@@ -535,7 +562,7 @@ final class Nav extends Globals
 
         CssClass::add($offCanvasHeaderTitleAttributes, $this->offCanvasHeaderTitleClass);
 
-        return $this->tag->create(
+        return Tag::create(
             $this->offCanvasHeaderTitleTag,
             $this->offCanvasHeaderTitleContent,
             $offCanvasHeaderTitleAttributes,

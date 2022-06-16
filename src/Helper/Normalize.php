@@ -12,13 +12,10 @@ final class Normalize
      * Normalize the given array of items for the dropdown.
      *
      * @param array $items The array of items to normalize.
-     * @param bool $active Whether the item is active or not.
-     * @param string $currentPath The current path.
-     * @param bool $activeItems Whether the item is active or not.
      *
      * @return array The normalized array of items.
      */
-    public static function dropdown(array $items, bool &$active = false): array
+    public static function dropdown(array $items): array
     {
         /**
          * @psalm-var array[] $items
@@ -39,10 +36,10 @@ final class Normalize
                 $items[$i]['link'] = $child['link'] ?? '/';
                 /** @var array */
                 $items[$i]['linkAttributes'] = $child['linkAttributes'] ?? [];
-                /** @var array */
-                $items[$i]['iconAttributes'] = $child['iconAttributes'] ?? [];
                 /** @var string */
                 $items[$i]['icon'] = $child['icon'] ?? '';
+                /** @var array */
+                $items[$i]['iconAttributes'] = $child['iconAttributes'] ?? [];
                 /** @var string */
                 $items[$i]['iconClass'] = $child['iconClass'] ?? '';
                 /** @var array */
@@ -104,6 +101,14 @@ final class Normalize
                     $items[$i]['disabled'] = $child['disabled'] ?? false;
                     /** @var bool */
                     $items[$i]['encodeLabel'] = $child['encodeLabel'] ?? true;
+                    /** @var string */
+                    $items[$i]['icon'] = $child['icon'] ?? '';
+                    /** @var array */
+                    $items[$i]['iconAttributes'] = $child['iconAttributes'] ?? [];
+                    /** @var string */
+                    $items[$i]['iconClass'] = $child['iconClass'] ?? '';
+                    /** @var array */
+                    $items[$i]['iconContainerAttributes'] = $child['iconContainerAttributes'] ?? [];
                 }
             }
         }

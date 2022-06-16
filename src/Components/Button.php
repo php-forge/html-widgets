@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Helper\CssClass;
+use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
 
 final class Button extends Globals
@@ -25,6 +26,7 @@ final class Button extends Globals
     {
         $new = clone $this;
         CssClass::add($new->attributes, $value);
+
         return $new;
     }
 
@@ -39,6 +41,7 @@ final class Button extends Globals
     {
         $new = clone $this;
         $new->content = $value;
+
         return $new;
     }
 
@@ -53,6 +56,7 @@ final class Button extends Globals
     {
         $new = clone $this;
         $new->disabled = $value;
+
         return $new;
     }
 
@@ -67,6 +71,7 @@ final class Button extends Globals
     {
         $new = clone $this;
         $new->link = $value;
+
         return $new;
     }
 
@@ -82,6 +87,7 @@ final class Button extends Globals
     {
         $new = clone $this;
         $new->type = $value;
+
         return $new;
     }
 
@@ -103,7 +109,7 @@ final class Button extends Globals
 
         $attributes['type'] = $this->type;
 
-        return $this->tag->create('button', $this->content, $attributes);
+        return Tag::create('button', $this->content, $attributes);
     }
 
     private function renderButtonLink(array $attributes): string
@@ -116,6 +122,6 @@ final class Button extends Globals
         $attributes['href'] = $this->link;
         $attributes['role'] = 'button';
 
-        return $this->tag->create('a', $this->content, $attributes);
+        return Tag::create('a', $this->content, $attributes);
     }
 }

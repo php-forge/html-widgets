@@ -4,21 +4,10 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Attribute;
 
-use Forge\Html\Attribute\Attributes;
-use Forge\Html\Tag\Tag;
 use Forge\Widget\AbstractWidget;
 
 abstract class Globals extends AbstractWidget
 {
-    protected Attributes $attributesHelper;
-    protected Tag $tag;
-
-    public function __construct()
-    {
-        $this->attributesHelper = new Attributes();
-        $this->tag = new Tag();
-    }
-
     /**
      * Set the ID of the widget.
      *
