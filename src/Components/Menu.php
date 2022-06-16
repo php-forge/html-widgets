@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Helper\CssClass;
+use Forge\Html\Tag\Tag;
 use Forge\Html\Helper\Encode;
 use Forge\Html\Widgets\Attribute\Globals;
 use Forge\Html\Widgets\Helper\Normalize;
@@ -58,14 +59,16 @@ final class Menu extends Globals
     private string $dropdownContainerTag = 'li';
     private array $dropdownDefinitions = [];
     private string $firstItemClass = '';
+    private array $iconContainerAttributes = [];
     private array $items = [];
     private bool $itemsContainer = true;
     private array $itemsContainerAttributes = [];
     private string $itemsTag = 'li';
     private string $labelTemplate = '{label}';
     private string $lastItemClass = '';
+    private array $linkAttributes = [];
     private string $linkClass = '';
-    private string $linkTemplate = '<a{attributes}>{label}</a>';
+    private string $linkTag = 'a';
     private string $tagName = 'ul';
     private string $template = '{items}';
 
@@ -80,6 +83,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->afterAttributes = $values;
+
         return $new;
     }
 
@@ -94,6 +98,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         CssClass::add($new->afterAttributes, $value);
+
         return $new;
     }
 
@@ -108,6 +113,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->afterContent = (string) $content;
+
         return $new;
     }
 
@@ -122,6 +128,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->afterTag = $value;
+
         return $new;
     }
 
@@ -136,6 +143,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->activeClass = $value;
+
         return $new;
     }
 
@@ -150,6 +158,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->beforeAttributes = $values;
+
         return $new;
     }
 
@@ -164,6 +173,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         CssClass::add($new->beforeAttributes, $value);
+
         return $new;
     }
 
@@ -178,6 +188,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->beforeContent = (string) $value;
+
         return $new;
     }
 
@@ -192,6 +203,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->beforeTag = $value;
+
         return $new;
     }
 
@@ -206,6 +218,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         CssClass::add($new->attributes, $value);
+
         return $new;
     }
 
@@ -220,6 +233,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->container = $value;
+
         return $new;
     }
 
@@ -234,6 +248,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->currentPath = $value;
+
         return $new;
     }
 
@@ -248,6 +263,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->disabledClass = $value;
+
         return $new;
     }
 
@@ -264,6 +280,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->dropdownArguments = $values;
+
         return $new;
     }
 
@@ -278,6 +295,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->dropdownConfigFile = $value;
+
         return $new;
     }
 
@@ -292,6 +310,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         CssClass::add($new->dropdownContainerAttributes, $value);
+
         return $new;
     }
 
@@ -306,6 +325,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->dropdownDefinitions = $values;
+
         return $new;
     }
 
@@ -320,6 +340,22 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->firstItemClass = $value;
+
+        return $new;
+    }
+
+    /**
+     * Returns a new instance with the specified icon container attributes.
+     *
+     * @param array $values Attribute values indexed by attribute names.
+     *
+     * @return self
+     */
+    public function iconContainerAttributes(array $values): self
+    {
+        $new = clone $this;
+        $new->iconContainerAttributes = $values;
+
         return $new;
     }
 
@@ -335,8 +371,9 @@ final class Menu extends Globals
      * - itemsContainerAttributes: array, optional, the HTML attributes for the item's submenu container.
      * - link: string, the item's href. Defaults to "#". For default `link` is "#".
      * - linkAttributes: array, the HTML attributes of the item's link. For default `linkAttributes` is `[]`.
-     * - icon: string, the item's icon. For default `icon` is ``.
+     * - icon: string, the item's icon. For default is ``.
      * - iconAttributes: array, the HTML attributes of the item's icon. For default `iconAttributes` is `[]`.
+     * - iconClass: string, the item's icon CSS class. For default is ``.
      * - liAttributes: array, optional, the HTML attributes of the item container.
      * - visible: bool, optional, whether this menu item is visible. Defaults to true.
      * - dropdown: array, optional, the configuration array for creating dropdown submenu items. The array structure is
@@ -352,6 +389,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->items = $values;
+
         return $new;
     }
 
@@ -366,6 +404,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->itemsContainer = $value;
+
         return $new;
     }
 
@@ -380,6 +419,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new-> itemsContainerAttributes = $values;
+
         return $new;
     }
 
@@ -394,6 +434,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         CssClass::add($new->itemsContainerAttributes, $value);
+
         return $new;
     }
 
@@ -408,6 +449,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->itemsTag = $value;
+
         return $new;
     }
 
@@ -426,6 +468,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->labelTemplate = $value;
+
         return $new;
     }
 
@@ -440,6 +483,22 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->lastItemClass = $value;
+
+        return $new;
+    }
+
+    /**
+     * Returns a new instance with the specified link attributes.
+     *
+     * @param array $values Attribute values indexed by attribute names.
+     *
+     * @return self
+     */
+    public function linkAttributes(array $values): self
+    {
+        $new = clone $this;
+        $new->linkAttributes = $values;
+
         return $new;
     }
 
@@ -454,23 +513,22 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->linkClass = $value;
+
         return $new;
     }
 
     /**
-     * Returns a new instance with the specified link template.
+     * Returns a new instance with the specified link tag.
      *
-     * @param string $value The template used to render the body of a menu which is a link. In this template, the token
-     * `{link}` will be replaced with the corresponding link URL; while `{label}` will be replaced with the link text.
-     *
-     * This property will be overridden by the `template` option set in individual menu items via {@see items}.
+     * @param string $value The tag that will be used to wrap the link.
      *
      * @return self
      */
-    public function linkTemplate(string $value): self
+    public function linkTag(string $value): self
     {
         $new = clone $this;
-        $new->linkTemplate = $value;
+        $new->linkTag = $value;
+
         return $new;
     }
 
@@ -485,6 +543,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->tagName = $value;
+
         return $new;
     }
 
@@ -500,6 +559,7 @@ final class Menu extends Globals
     {
         $new = clone $this;
         $new->template = $value;
+
         return $new;
     }
 
@@ -525,14 +585,14 @@ final class Menu extends Globals
     {
         $afterAttributes = $this->afterAttributes;
 
-        return PHP_EOL . $this->tag->create($this->afterTag, $this->afterContent, $afterAttributes);
+        return PHP_EOL . Tag::create($this->afterTag, $this->afterContent, $afterAttributes);
     }
 
     private function renderBeforeContent(): string
     {
         $beforeAttributes = $this->beforeAttributes;
 
-        return $this->tag->create($this->beforeTag, $this->beforeContent, $beforeAttributes);
+        return Tag::create($this->beforeTag, $this->beforeContent, $beforeAttributes);
     }
 
     /**
@@ -547,7 +607,7 @@ final class Menu extends Globals
             ->render();
 
         return match ($this->dropdownContainer) {
-            true => $this->tag->create($this->dropdownContainerTag, $dropdown, $dropdownContainerAttributes),
+            true => Tag::create($this->dropdownContainerTag, $dropdown, $dropdownContainerAttributes),
             false => $dropdown,
         };
     }
@@ -568,6 +628,7 @@ final class Menu extends Globals
         $label = $item['label'];
         /** @var array */
         $linkAttributes = $item['linkAttributes'] ?? [];
+        $linkAttributes = array_merge($linkAttributes, $this->linkAttributes);
         CssClass::add($linkAttributes, $this->linkClass);
 
         if ($item['active']) {
@@ -588,18 +649,23 @@ final class Menu extends Globals
             $linkAttributes['href'] = $item['link'];
         }
 
-        /** @var string */
-        $labelTemplate = $item['labelTemplate'] ?? $this->labelTemplate;
-
-        /** @var string */
-        $linkTemplate = $item['linkTemplate'] ?? $this->linkTemplate;
+        /**
+         * @var string $item['icon']
+         * @var string $item['iconClass']
+         * @var array $item['iconAttributes']
+         * @var array $item['iconContainerAttributes']
+         */
+        $label = $this->renderLabel(
+            $label,
+            $item['icon'],
+            $item['iconClass'],
+            $item['iconAttributes'],
+            $item['iconContainerAttributes'],
+        );
 
         return match (isset($linkAttributes['href'])) {
-            true => strtr($linkTemplate, [
-                '{attributes}' => $this->attributesHelper->render($linkAttributes),
-                '{label}' => $label,
-            ]),
-            false => strtr($labelTemplate, ['{label}' => $label]),
+            true => Tag::create($this->linkTag, $label, $linkAttributes),
+            false => $label,
         };
     }
 
@@ -641,7 +707,7 @@ final class Menu extends Globals
 
                 $lines[] = match ($this->itemsContainer) {
                     false => $menu,
-                    default => $this->tag->create($this->itemsTag, $menu, $itemsContainerAttributes),
+                    default => Tag::create($this->itemsTag, $menu, $itemsContainerAttributes),
                 };
             }
         }
@@ -670,7 +736,31 @@ final class Menu extends Globals
 
         return match ($this->container) {
             false => $beforeContent . $content . $afterContent,
-            default => $beforeContent . $this->tag->create($this->tagName, $content, $attributes) . $afterContent,
+            default => $beforeContent . Tag::create($this->tagName, $content, $attributes) . $afterContent,
         };
+    }
+
+    private function renderLabel(
+        string $label,
+        string $icon,
+        string $iconClass,
+        array $iconAttributes = [],
+        array $iconContainerAttributes = []
+    ): string {
+        $html = '';
+        $iconContainerAttributes = array_merge($this->iconContainerAttributes, $iconContainerAttributes);
+
+        CssClass::add($iconAttributes, $iconClass);
+
+        if ($icon !== '' || $iconClass !== '') {
+            $i = Tag::create('i', $icon, $iconAttributes);
+            $html = Tag::create('span', $i, $iconContainerAttributes);
+        }
+
+        if ($label !== '') {
+            $html .= $label;
+        }
+
+        return $html;
     }
 }

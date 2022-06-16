@@ -6,6 +6,7 @@ namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Element\Button;
+use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
 use Forge\Html\Widgets\Helper\Utils;
 
@@ -53,6 +54,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->brand = $value;
+
         return $new;
     }
 
@@ -67,6 +69,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->brandAttributes = $values;
+
         return $new;
     }
 
@@ -81,6 +84,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->brandClass = $value;
+
         return $new;
     }
 
@@ -95,6 +99,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->brandImage = $value;
+
         return $new;
     }
 
@@ -109,6 +114,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->brandImageAttributes = $values;
+
         return $new;
     }
 
@@ -123,6 +129,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->brandImageClass = $value;
+
         return $new;
     }
 
@@ -137,6 +144,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->brandLink = $value;
+
         return $new;
     }
 
@@ -151,6 +159,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->brandTag = $value;
+
         return $new;
     }
 
@@ -165,6 +174,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->buttonToggle = $value;
+
         return $new;
     }
 
@@ -179,6 +189,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->buttonToggleAttributes = $values;
+
         return $new;
     }
 
@@ -193,6 +204,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->buttonToggleClass = $value;
+
         return $new;
     }
 
@@ -207,6 +219,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->buttonToggleContent = $value;
+
         return $new;
     }
 
@@ -221,6 +234,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->buttonToggleId = $value;
+
         return $new;
     }
 
@@ -235,6 +249,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         CssClass::add($new->attributes, $value);
+
         return $new;
     }
 
@@ -249,6 +264,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->container = $value;
+
         return $new;
     }
 
@@ -263,6 +279,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->containerAttributes = $values;
+
         return $new;
     }
 
@@ -277,6 +294,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->containerClass = $value;
+
         return $new;
     }
 
@@ -291,6 +309,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->containerTag = $value;
+
         return $new;
     }
 
@@ -305,6 +324,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->menuContainer = $value;
+
         return $new;
     }
 
@@ -319,6 +339,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->menuContainerAttributes = $values;
+
         return $new;
     }
 
@@ -333,6 +354,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->menuContainerClass = $value;
+
         return $new;
     }
 
@@ -347,6 +369,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->menuContainerTag = $value;
+
         return $new;
     }
 
@@ -361,6 +384,7 @@ final class NavBar extends Globals
     {
         $new = clone $this;
         $new->template = $value;
+
         return $new;
     }
 
@@ -375,7 +399,7 @@ final class NavBar extends Globals
 
         CssClass::add($containerAttributes, $this->containerClass);
 
-        $content .= $this->tag->begin($this->tagName, $attributes);
+        $content .= Tag::begin($this->tagName, $attributes);
 
         if ($this->renderBrand() !== '') {
             $parts['{brand}'] = PHP_EOL . $this->renderBrand();
@@ -392,7 +416,7 @@ final class NavBar extends Globals
         $content .= Utils::removeDoubleLinesBreaks(strtr($this->template, $parts));
 
         return match ($this->container) {
-            true => $this->tag->begin($this->containerTag, $containerAttributes) . PHP_EOL . $content . PHP_EOL,
+            true => Tag::begin($this->containerTag, $containerAttributes) . PHP_EOL . $content . PHP_EOL,
             default => $content . PHP_EOL,
         };
     }
@@ -402,7 +426,7 @@ final class NavBar extends Globals
         $content = '';
 
         if ($this->menuContainer) {
-            $content .= $this->tag->end($this->menuContainerTag) . PHP_EOL;
+            $content .= Tag::end($this->menuContainerTag) . PHP_EOL;
         }
 
         return $content . $this->renderEndTag();
@@ -425,14 +449,14 @@ final class NavBar extends Globals
 
             CssClass::add($brandImageAttributes, $this->brandImageClass);
 
-            $brand = $this->tag->create('img', '', $brandImageAttributes);
+            $brand = Tag::create('img', '', $brandImageAttributes);
         }
 
         if ($this->brand !== '' && $this->brandImage !== '') {
-            $brand = $this->tag->create('img', '', $brandImageAttributes) . $this->brand;
+            $brand = Tag::create('img', '', $brandImageAttributes) . $this->brand;
         }
 
-        $brandTag = $this->tag->create($this->brandTag, $brand, $brandAttributes);
+        $brandTag = Tag::create($this->brandTag, $brand, $brandAttributes);
 
         return match ($brand) {
             '' => '',
@@ -479,14 +503,14 @@ final class NavBar extends Globals
 
         CssClass::add($menuContainerAttributes, $this->menuContainerClass);
 
-        return PHP_EOL . $this->tag->begin($this->menuContainerTag, $menuContainerAttributes);
+        return PHP_EOL . Tag::begin($this->menuContainerTag, $menuContainerAttributes);
     }
 
     private function renderEndTag(): string
     {
         return match ($this->container) {
-            false => $this->tag->end($this->tagName),
-            default => $this->tag->end($this->tagName) . PHP_EOL . $this->tag->end($this->containerTag),
+            false => Tag::end($this->tagName),
+            default => Tag::end($this->tagName) . PHP_EOL . Tag::end($this->containerTag),
         };
     }
 }
