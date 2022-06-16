@@ -39,7 +39,6 @@ final class NavBar extends Globals
     private array $menuContainerAttributes = [];
     private string $menuContainerClass = 'container-fluid';
     private string $menuContainerTag = 'div';
-    private array $parts = [];
     private string $tagName = 'nav';
     private string $template = '{containerMenu}{brand}{toggle}';
 
