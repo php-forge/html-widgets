@@ -109,6 +109,8 @@ final class Normalize
                     $items[$i]['iconClass'] = $child['iconClass'] ?? '';
                     /** @var array */
                     $items[$i]['iconContainerAttributes'] = $child['iconContainerAttributes'] ?? [];
+                    /** @var bool */
+                    $items[$i]['visible'] = $child['visible'] ?? true;
                 }
             }
         }
