@@ -688,7 +688,7 @@ final class Menu extends Globals
             if (isset($item['items'])) {
                 /** @psalm-var array $item['items'] */
                 $lines[] = strtr($this->template, ['{items}' => $this->renderDropdown([$item])]);
-            } else {
+            } elseif ($item['visible']) {
                 /** @psalm-var array|null $item['itemsContainerAttributes'] */
                 $itemsContainerAttributes = array_merge(
                     $this->itemsContainerAttributes,
