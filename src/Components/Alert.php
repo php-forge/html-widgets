@@ -216,6 +216,7 @@ final class Alert extends Globals
     private function renderAlert(): string
     {
         $attributes = $this->attributes;
+        $parts = [];
         $parts['{content}'] = $this->content;
         $parts['{dismissing}'] = $this->dismissing ? $this->renderDismissing() : '';
         $parts['{icon}'] = $this->iconClass !== '' || $this->iconValue !== '' ? $this->renderIcon() : '';
@@ -229,7 +230,7 @@ final class Alert extends Globals
 
         return match ($this->container) {
             true => Tag::div($attributes, $content),
-            false => $contentAlert,
+            false => $content,
         };
     }
 
