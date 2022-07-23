@@ -231,7 +231,7 @@ final class Alert extends Globals
 
     protected function run(): string
     {
-        return $this->renderAlert();
+        return '' !== $this->content ? $this->renderAlert() : '';
     }
 
     /**
