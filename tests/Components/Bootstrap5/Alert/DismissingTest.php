@@ -42,9 +42,9 @@ final class DismissingTest extends TestCase
             </div>
             HTML,
             Alert::create()
-                ->class('alert alert-warning alert-dismissible fade show')
                 ->content('<strong>Holy guacamole!</strong> You should check in on some of those fields below.')
                 ->dismissing(true)
+                ->type('warning')
                 ->render(),
         );
     }

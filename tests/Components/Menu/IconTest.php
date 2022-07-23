@@ -22,13 +22,13 @@ final class IconTest extends TestCase
             <<<HTML
             <ul>
             <li>
-            <a class="me-2 " href="/active"><span class="me-2"><i class="bi bi-house"></i></span>Home</a>
+            <a class="me-2" href="/active"><span class="me-2"><i class="bi bi-house"></i></span>Home</a>
             </li>
             <li>
-            <a class="me-2 " href="#"><span class="me-2"><i class="bi bi-envelope"></i></span>Contact</a>
+            <a class="me-2" href="#"><span class="me-2"><i class="bi bi-envelope"></i></span>Contact</a>
             </li>
             <li>
-            <a class="me-2 " href="#"><span class="me-2"><i class="bi bi-lock"></i></span>Login</a>
+            <a class="me-2" href="#"><span class="me-2"><i class="bi bi-lock"></i></span>Login</a>
             </li>
             </ul>
             HTML,

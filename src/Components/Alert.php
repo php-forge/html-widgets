@@ -7,6 +7,7 @@ namespace Forge\Html\Widgets\Components;
 use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
+use InvalidArgumentException;
 
 /**
  * Alert renders an alert component.
@@ -15,6 +16,17 @@ use Forge\Html\Widgets\Attribute\Globals;
  */
 final class Alert extends Globals
 {
+    /** @psalm-var string[] */
+    private array $alertTypes = [
+        'danger' => 'alert alert-danger',
+        'dark' => 'alert alert-dark',
+        'info' => 'alert alert-info',
+        'light' => 'alert alert-light',
+        'primary' => 'alert alert-primary',
+        'secondary' => 'alert alert-secondary',
+        'success' => 'alert alert-success',
+        'warning' => 'alert alert-warning',
+    ];
     private array $buttonAttributes = [];
     private string $buttonClass = 'btn-close';
     private string $buttonLabel = '';
@@ -26,6 +38,7 @@ final class Alert extends Globals
     private string $iconClass = '';
     private string $iconValue = '';
     private string $template = '{icon}' . PHP_EOL . '{content}' . PHP_EOL . '{dismissing}';
+    private string $type = '';
 
     /**
      * Returns a new instance with the HTML attributes for rendering the close button tag.
@@ -89,7 +102,7 @@ final class Alert extends Globals
     public function class(string $value): self
     {
         $new = clone $this;
-        CssClass::add($new->attributes, $value);
+        $new->class = $value;
 
         return $new;
     }
@@ -204,6 +217,18 @@ final class Alert extends Globals
         return $new;
     }
 
+    public function type(string $value): self
+    {
+        if (!isset($this->alertTypes[$value])) {
+            throw new InvalidArgumentException(sprintf('Invalid alert type "%s".', $value));
+        }
+
+        $new = clone $this;
+        CssClass::add($new->attributes, $this->alertTypes[$value]);
+
+        return $new;
+    }
+
     protected function run(): string
     {
         return $this->renderAlert();
@@ -215,6 +240,10 @@ final class Alert extends Globals
     private function renderAlert(): string
     {
         $attributes = $this->attributes;
+
+        CssClass::add($attributes, $this->class);
+        CssClass::add($attributes, $this->type);
+
         $parts = [];
         $parts['{content}'] = $this->content;
         $parts['{dismissing}'] = $this->dismissing ? $this->renderDismissing() : '';
@@ -226,6 +255,10 @@ final class Alert extends Globals
         }
 
         $content = trim(strtr($this->template, $parts));
+
+        if ($this->dismissing) {
+            CssClass::add($attributes, 'alert-dismissible fade show');
+        }
 
         return match ($this->container) {
             true => Tag::div($attributes, $content),

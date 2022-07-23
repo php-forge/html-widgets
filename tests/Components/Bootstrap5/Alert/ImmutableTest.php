@@ -27,5 +27,6 @@ final class ImmutableTest extends TestCase
         $this->assertNotSame($alert, $alert->iconClass(''));
         $this->assertNotSame($alert, $alert->iconValue(''));
         $this->assertNotSame($alert, $alert->template(''));
+        $this->assertNotSame($alert, $alert->type('success'));
     }
 }

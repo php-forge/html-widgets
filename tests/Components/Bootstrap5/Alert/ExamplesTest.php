@@ -14,7 +14,7 @@ final class ExamplesTest extends TestCase
     {
         return [
             [
-                'alert alert-primary',
+                'primary',
                 'A simple primary alert—check it out!',
                 <<<HTML
                 <div class="alert alert-primary" role="alert">
@@ -23,7 +23,7 @@ final class ExamplesTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-secondary',
+                'secondary',
                 'A simple secondary alert—check it out!',
                 <<<HTML
                 <div class="alert alert-secondary" role="alert">
@@ -32,7 +32,7 @@ final class ExamplesTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-success',
+                'success',
                 'A simple success alert—check it out!',
                 <<<HTML
                 <div class="alert alert-success" role="alert">
@@ -41,7 +41,7 @@ final class ExamplesTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-danger',
+                'danger',
                 'A simple danger alert—check it out!',
                 <<<HTML
                 <div class="alert alert-danger" role="alert">
@@ -50,7 +50,7 @@ final class ExamplesTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-warning',
+                'warning',
                 'A simple warning alert—check it out!',
                 <<<HTML
                 <div class="alert alert-warning" role="alert">
@@ -59,7 +59,7 @@ final class ExamplesTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-info',
+                'info',
                 'A simple info alert—check it out!',
                 <<<HTML
                 <div class="alert alert-info" role="alert">
@@ -68,7 +68,7 @@ final class ExamplesTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-light',
+                'light',
                 'A simple light alert—check it out!',
                 <<<HTML
                 <div class="alert alert-light" role="alert">
@@ -77,7 +77,7 @@ final class ExamplesTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-dark',
+                'dark',
                 'A simple dark alert—check it out!',
                 <<<HTML
                 <div class="alert alert-dark" role="alert">
@@ -95,16 +95,16 @@ final class ExamplesTest extends TestCase
      * the eight required contextual classes (e.g., .alert-success). For inline dismissal, use the alerts JavaScript
      * plugin.
      *
-     * @param string $class The class name.
+     * @param string $type The type of alert.
      * @param string $content The content.
      * @param string $expected The expected HTML.
      *
      * @link https://getbootstrap.com/docs/5.2/components/alerts/#examples
      */
-    public function testsExamples(string $class, string $content, string $expected): void
+    public function testsExamples(string $type, string $content, string $expected): void
     {
         $assert = new Assert();
 
-        $assert->equalsWithoutLE($expected, Alert::create()->class($class)->content($content)->render());
+        $assert->equalsWithoutLE($expected, Alert::create()->content($content)->type($type)->render());
     }
 }

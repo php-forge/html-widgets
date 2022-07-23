@@ -31,7 +31,6 @@ final class AdditionalContentTest extends TestCase
             </div>
             HTML,
             Alert::create()
-                ->class('alert alert-success')
                 ->content(
                     Tag::h(4, ['class' => 'alert-heading'], 'Well done!') . PHP_EOL .
                     Tag::p(
@@ -43,7 +42,9 @@ final class AdditionalContentTest extends TestCase
                         ['class' => 'mb-0'],
                         'Whenever you need to, be sure to use margin utilities to keep things nice and tidy.'
                     )
-                )->render(),
+                )
+                ->type('success')
+                ->render(),
         );
     }
 }

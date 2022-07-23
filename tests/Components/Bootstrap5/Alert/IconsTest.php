@@ -15,7 +15,7 @@ final class IconsTest extends TestCase
     {
         return [
             [
-                'alert alert-primary d-flex align-items-center',
+                'primary',
                 Tag::div([], 'An example alert with an icon.'),
                 'bi bi-exclamation-triangle-fill flex-shrink-0 me-2',
                 <<<HTML
@@ -28,7 +28,7 @@ final class IconsTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-success d-flex align-items-center',
+                'success',
                 Tag::div([], 'An example success alert with an icon.'),
                 'bi bi-check-circle-fill flex-shrink-0 me-2',
                 <<<HTML
@@ -41,7 +41,7 @@ final class IconsTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-warning d-flex align-items-center',
+                'warning',
                 Tag::div([], 'An example warning alert with an icon.'),
                 'bi bi-exclamation-triangle-fill flex-shrink-0 me-2',
                 <<<HTML
@@ -54,7 +54,7 @@ final class IconsTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-danger d-flex align-items-center',
+                'danger',
                 Tag::div([], 'An example danger alert with an icon.'),
                 'bi bi-exclamation-triangle-fill flex-shrink-0 me-2',
                 <<<HTML
@@ -72,18 +72,23 @@ final class IconsTest extends TestCase
     /**
      * @dataProvider createIconsProvider
      *
-     * @param string $class The class to use for the alert.
+     * @param string $type The type of alert.
      * @param string $content The content to use for the alert.
      * @param string $iconClass The class to use for the icon.
      * @param string $expected The expected HTML output.
      */
-    public function testIcons(string $class, string $content, string $iconClass, string $expected): void
+    public function testIcons(string $type, string $content, string $iconClass, string $expected): void
     {
         $assert = new Assert();
 
         $assert->equalsWithoutLE(
             $expected,
-            Alert::create()->class($class)->content($content)->iconClass($iconClass)->render(),
+            Alert::create()
+                ->class('d-flex align-items-center')
+                ->content($content)
+                ->iconClass($iconClass)
+                ->type($type)
+                ->render(),
         );
     }
 
@@ -91,7 +96,7 @@ final class IconsTest extends TestCase
     {
         return [
             [
-                'alert alert-primary d-flex align-items-center',
+                'primary',
                 Tag::div([], 'An example alert with an icon.'),
                 'bi bi-exclamation-triangle-fill flex-shrink-0 ms-2',
                 <<<HTML
@@ -104,7 +109,7 @@ final class IconsTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-success d-flex align-items-center',
+                'success',
                 Tag::div([], 'An example success alert with an icon.'),
                 'bi bi-check-circle-fill flex-shrink-0 ms-2',
                 <<<HTML
@@ -117,7 +122,7 @@ final class IconsTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-warning d-flex align-items-center',
+                'warning',
                 Tag::div([], 'An example warning alert with an icon.'),
                 'bi bi-exclamation-triangle-fill flex-shrink-0 ms-2',
                 <<<HTML
@@ -130,7 +135,7 @@ final class IconsTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-danger d-flex align-items-center',
+                'danger',
                 Tag::div([], 'An example danger alert with an icon.'),
                 'bi bi-exclamation-triangle-fill flex-shrink-0 ms-2',
                 <<<HTML
@@ -148,22 +153,23 @@ final class IconsTest extends TestCase
     /**
      * @dataProvider createIconsTemplatePositionProvider
      *
-     * @param string $class The class to use for the alert.
+     * @param string $type The type of alert.
      * @param string $content The content to use for the alert.
      * @param string $iconClass The class to use for the icon.
      * @param string $expected The expected HTML output.
      */
-    public function testIconsTemplatePosition(string $class, string $content, string $iconClass, string $expected): void
+    public function testIconsTemplatePosition(string $type, string $content, string $iconClass, string $expected): void
     {
         $assert = new Assert();
 
         $assert->equalsWithoutLE(
             $expected,
             Alert::create()
-                ->class($class)
+                ->class('d-flex align-items-center')
                 ->content($content)
                 ->iconClass($iconClass)
                 ->template('{content}' . PHP_EOL . '{icon}')
+                ->type($type)
                 ->render(),
         );
     }
@@ -172,7 +178,7 @@ final class IconsTest extends TestCase
     {
         return [
             [
-                'alert alert-primary d-flex align-items-center',
+                'primary',
                 Tag::div([], 'An example alert with an icon text.'),
                 '&#9842;',
                 <<<HTML
@@ -185,7 +191,7 @@ final class IconsTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-success d-flex align-items-center',
+                'success',
                 Tag::div([], 'An example success alert with an icon.'),
                 '&#9762;',
                 <<<HTML
@@ -198,7 +204,7 @@ final class IconsTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-warning d-flex align-items-center',
+                'warning',
                 Tag::div([], 'An example warning alert with an icon.'),
                 '&#9947;',
                 <<<HTML
@@ -211,7 +217,7 @@ final class IconsTest extends TestCase
                 HTML,
             ],
             [
-                'alert alert-danger d-flex align-items-center',
+                'danger',
                 Tag::div([], 'An example danger alert with an icon.'),
                 '&#9733;',
                 <<<HTML
@@ -229,18 +235,24 @@ final class IconsTest extends TestCase
     /**
      * @dataProvider createIconsValueProvider
      *
-     * @param string $class The class to use for the alert.
+     * @param string $type The type of alert.
      * @param string $content The content to use for the alert.
      * @param string $iconValue The value to use for the icon.
      * @param string $expected The expected HTML output.
      */
-    public function testIconsValue(string $class, string $content, string $iconValue, string $expected): void
+    public function testIconsValue(string $type, string $content, string $iconValue, string $expected): void
     {
         $assert = new Assert();
 
         $assert->equalsWithoutLE(
             $expected,
-            Alert::create()->class($class)->content($content)->iconClass('me-2')->iconValue($iconValue)->render(),
+            Alert::create()
+                ->class('d-flex align-items-center')
+                ->content($content)
+                ->iconClass('me-2')
+                ->iconValue($iconValue)
+                ->type($type)
+                ->render(),
         );
     }
 }
