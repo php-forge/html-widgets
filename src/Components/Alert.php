@@ -7,7 +7,6 @@ namespace Forge\Html\Widgets\Components;
 use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
-use InvalidArgumentException;
 
 /**
  * Alert renders an alert component.
