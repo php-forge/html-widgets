@@ -109,7 +109,7 @@ final class Button extends Globals
 
         $attributes['type'] = $this->type;
 
-        return Tag::create('button', $this->content, $attributes);
+        return Tag::button($attributes, $this->content);
     }
 
     private function renderButtonLink(array $attributes): string
@@ -122,6 +122,6 @@ final class Button extends Globals
         $attributes['href'] = $this->link;
         $attributes['role'] = 'button';
 
-        return Tag::create('a', $this->content, $attributes);
+        return Tag::a($attributes, $this->content);
     }
 }

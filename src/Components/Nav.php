@@ -453,7 +453,7 @@ final class Nav extends Globals
 
         if ($this->renderMenu() !== '') {
             if ($this->container) {
-                $html .= Tag::create('div', $this->renderMenu(), $attributes) . PHP_EOL;
+                $html .= Tag::div($attributes, $this->renderMenu()) . PHP_EOL;
             } else {
                 $html .= $this->renderMenu();
             }

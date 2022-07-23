@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Forge\Html\Widgets\Components;
 
 use Forge\Html\Helper\CssClass;
-use Forge\Html\Tag\Element\Button;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
 use Forge\Html\Widgets\Helper\Utils;
@@ -492,7 +491,7 @@ final class NavBar extends Globals
 
         return match ($this->buttonToggle) {
             false => '',
-            default => (new Button())->create($buttonToggleAttributes, $this->buttonToggleContent),
+            default => Tag::button($buttonToggleAttributes, $this->buttonToggleContent),
         };
     }
 
