@@ -243,5 +243,4 @@ final class IconsTest extends TestCase
             Alert::create()->class($class)->content($content)->iconClass('me-2')->iconValue($iconValue)->render(),
         );
     }
-
 }
