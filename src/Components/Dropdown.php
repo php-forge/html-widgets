@@ -645,8 +645,8 @@ final class Dropdown extends Globals
         CssClass::add($iconAttributes, $iconClass);
 
         if ($icon !== '' || $iconClass !== '') {
-            $i = Tag::create('i', $icon, $iconAttributes);
-            $html = Tag::create('span', $i, $iconContainerAttributes);
+            $i = Tag::i($iconAttributes, $icon);
+            $html = Tag::span($iconContainerAttributes, $i);
         }
 
         if ($label !== '') {
@@ -723,7 +723,7 @@ final class Dropdown extends Globals
 
         return Button::create()
             ->attributes($toggleAttributes)
-            ->content(Tag::create('span', $label, $splitButtonSpanAttributes))
+            ->content(Tag::span($splitButtonSpanAttributes, $label))
             ->render();
     }
 

@@ -753,8 +753,8 @@ final class Menu extends Globals
         CssClass::add($iconAttributes, $iconClass);
 
         if ($icon !== '' || $iconClass !== '') {
-            $i = Tag::create('i', $icon, $iconAttributes);
-            $html = Tag::create('span', $i, $iconContainerAttributes);
+            $i = Tag::i($iconAttributes, $icon);
+            $html = Tag::span($iconContainerAttributes, $i);
         }
 
         if ($label !== '') {
