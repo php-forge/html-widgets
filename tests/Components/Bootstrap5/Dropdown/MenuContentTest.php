@@ -159,12 +159,12 @@ final class MenuContentTest extends TestCase
             <button class="btn btn-secondary dropdown-toggle" type="button" aria-expanded="false" data-bs-toggle="dropdown">Dropdown</button>
             <ul class="dropdown-menu">
             <li>
-            <p class="pe-4 ps-4 text-muted ">
+            <p class="pe-4 ps-4 text-muted">
             Some example text thats free-flowing within the dropdown menu.
             </p>
             </li>
             <li>
-            <p class="mb-0 pe-4 ps-4 text-muted ">
+            <p class="mb-0 pe-4 ps-4 text-muted">
             And this is more example text.
             </p>
             </li>
