@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\Attribute;
 use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Helper\Encode;
@@ -632,7 +633,7 @@ final class Menu extends Globals
         CssClass::add($linkAttributes, $this->linkClass);
 
         if ($item['active']) {
-            $linkAttributes['aria-current'] = 'page';
+            Attribute::add($linkAttributes, 'aria-current', 'page');
             CssClass::add($linkAttributes, $this->activeClass);
         }
 
@@ -645,8 +646,7 @@ final class Menu extends Globals
         }
 
         if (isset($item['link'])) {
-            /** @var string */
-            $linkAttributes['href'] = $item['link'];
+            Attribute::add($linkAttributes, 'href', $item['link']);
         }
 
         /**

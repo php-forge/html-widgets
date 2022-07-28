@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\Attribute;
 use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
@@ -107,7 +108,7 @@ final class Button extends Globals
             $attributes['disabled'] = true;
         }
 
-        $attributes['type'] = $this->type;
+        Attribute::add($attributes, 'type', $this->type);
 
         return Tag::button($attributes, $this->content);
     }
@@ -116,11 +117,11 @@ final class Button extends Globals
     {
         if ($this->disabled) {
             CssClass::add($attributes, 'disabled');
-            $attributes['aria-disabled'] = 'true';
+            Attribute::add($attributes, 'aria-disabled', 'true');
         }
 
-        $attributes['href'] = $this->link;
-        $attributes['role'] = 'button';
+        Attribute::add($attributes, 'href', $this->link);
+        Attribute::add($attributes, 'role', 'button');
 
         return Tag::a($attributes, $this->content);
     }

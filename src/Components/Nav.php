@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\Attribute;
 use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
@@ -487,17 +488,17 @@ final class Nav extends Globals
         $offCanvasAttributes = $this->offCanvasAttributes;
 
         if (!isset($offCanvasAttributes['aria-labelledby']) && $this->offCanvasHeaderTitleId !== '') {
-            $offCanvasAttributes['aria-labelledby'] = $this->offCanvasHeaderTitleId;
+            Attribute::add($offCanvasAttributes, 'aria-labelledby', $this->offCanvasHeaderTitleId);
         }
 
         CssClass::add($offCanvasAttributes, $this->offCanvasClass);
 
         if ($this->offCanvasId !== '') {
-            $offCanvasAttributes['id'] = $this->offCanvasId;
+            Attribute::add($offCanvasAttributes, 'id', $this->offCanvasId);
         }
 
         if (!isset($offCanvasAttributes['tabindex'])) {
-            $offCanvasAttributes['tabindex'] = -1;
+            Attribute::add($offCanvasAttributes, 'tabindex', '-1');
         }
 
         if ($this->renderOffCanvasHeader() !== '') {
@@ -532,14 +533,14 @@ final class Nav extends Globals
     private function renderOffCanvasHeaderButton(): string
     {
         $offCanvasHeaderButtonAttributes = $this->offCanvasHeaderButtonAttributes;
-        $offCanvasHeaderButtonAttributes['type'] = 'button';
+        Attribute::add($offCanvasHeaderButtonAttributes, 'type', 'button');
 
         if (!array_key_exists('aria-label', $offCanvasHeaderButtonAttributes)) {
-            $offCanvasHeaderButtonAttributes['aria-label'] = 'Close';
+            Attribute::add($offCanvasHeaderButtonAttributes, 'aria-label', 'Close');
         }
 
         if (!array_key_exists('data-bs-dismiss', $offCanvasHeaderButtonAttributes)) {
-            $offCanvasHeaderButtonAttributes['data-bs-dismiss'] = 'offcanvas';
+            Attribute::add($offCanvasHeaderButtonAttributes, 'data-bs-dismiss', 'offcanvas');
         }
 
         CssClass::add($offCanvasHeaderButtonAttributes, $this->offCanvasHeaderButtonClass);
@@ -557,7 +558,7 @@ final class Nav extends Globals
         $offCanvasHeaderTitleAttributes = $this->offCanvasHeaderTitleAttributes;
 
         if ($this->offCanvasHeaderTitleId !== '') {
-            $offCanvasHeaderTitleAttributes['id'] = $this->offCanvasHeaderTitleId;
+            Attribute::add($offCanvasHeaderTitleAttributes, 'id', $this->offCanvasHeaderTitleId);
         }
 
         CssClass::add($offCanvasHeaderTitleAttributes, $this->offCanvasHeaderTitleClass);
