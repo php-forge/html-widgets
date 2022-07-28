@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\Attribute;
 use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
@@ -251,7 +252,7 @@ final class Alert extends Globals
 
         // add role attribute
         if (!array_key_exists('role', $attributes)) {
-            $attributes['role'] = 'alert';
+            Attribute::add($attributes, 'role', 'alert');
         }
 
         $content = trim(strtr($this->template, $parts));
@@ -274,11 +275,11 @@ final class Alert extends Globals
         $buttonAttributes = $this->buttonAttributes;
 
         if (!array_key_exists('data-bs-dismiss', $buttonAttributes)) {
-            $buttonAttributes['data-bs-dismiss'] = 'alert';
+            Attribute::add($buttonAttributes, 'data-bs-dismiss', 'alert');
         }
 
         if (!array_key_exists('aria-label', $buttonAttributes)) {
-            $buttonAttributes['aria-label'] = 'Close';
+            Attribute::add($buttonAttributes, 'aria-label', 'Close');
         }
 
         CssClass::add($buttonAttributes, $this->buttonClass);

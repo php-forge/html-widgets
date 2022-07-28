@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\Attribute;
 use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
@@ -439,12 +440,11 @@ final class NavBar extends Globals
         CssClass::add($brandAttributes, $this->brandClass);
 
         if (!isset($brandAttributes['href'])) {
-            $brandAttributes['href'] = $this->brandLink;
+            Attribute::add($brandAttributes, 'href', $this->brandLink);
         }
 
         if ($this->brandImage !== '') {
-            $brandImageAttributes['src'] = $this->brandImage;
-
+            Attribute::add($brandImageAttributes, 'src', $this->brandImage);
             CssClass::add($brandImageAttributes, $this->brandImageClass);
 
             $brand = Tag::create('img', '', $brandImageAttributes);
@@ -470,23 +470,23 @@ final class NavBar extends Globals
         CssClass::add($buttonToggleAttributes, $this->buttonToggleClass);
 
         if (!array_key_exists('data-bs-toggle', $buttonToggleAttributes)) {
-            $buttonToggleAttributes['data-bs-toggle'] = 'collapse';
+            Attribute::add($buttonToggleAttributes, 'data-bs-toggle', 'collapse');
         }
 
         if (!array_key_exists('data-bs-target', $buttonToggleAttributes) && $this->buttonToggleId !== '') {
-            $buttonToggleAttributes['data-bs-target'] = '#' . $this->buttonToggleId;
+            Attribute::add($buttonToggleAttributes, 'data-bs-target', '#' . $this->buttonToggleId);
         }
 
         if (!array_key_exists('aria-controls', $buttonToggleAttributes) && $this->buttonToggleId !== '') {
-            $buttonToggleAttributes['aria-controls'] = $this->buttonToggleId;
+            Attribute::add($buttonToggleAttributes, 'aria-controls', $this->buttonToggleId);
         }
 
         if (!array_key_exists('aria-expanded', $buttonToggleAttributes)) {
-            $buttonToggleAttributes['aria-expanded'] = 'false';
+            Attribute::add($buttonToggleAttributes, 'aria-expanded', 'false');
         }
 
         if (!array_key_exists('aria-label', $buttonToggleAttributes)) {
-            $buttonToggleAttributes['aria-label'] = 'Toggle navigation';
+            Attribute::add($buttonToggleAttributes, 'aria-label', 'Toggle navigation');
         }
 
         return match ($this->buttonToggle) {

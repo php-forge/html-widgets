@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Forge\Html\Widgets\Components;
 
+use Forge\Html\Helper\Attribute;
 use Forge\Html\Helper\CssClass;
 use Forge\Html\Tag\Tag;
 use Forge\Html\Widgets\Attribute\Globals;
@@ -551,7 +552,7 @@ final class Dropdown extends Globals
         CssClass::add($linkAttributes, $this->itemClass);
 
         if ($item['active']) {
-            $linkAttributes['aria-current'] = 'true';
+            Attribute::add($linkAttributes, 'aria-current', 'true');
             CssClass::add($linkAttributes, [$this->activeClass]);
         }
 
@@ -589,8 +590,7 @@ final class Dropdown extends Globals
         }
 
         if (isset($this->attributes['id'])) {
-            /** @var string */
-            $itemsContainerAttributes['aria-labelledby'] = $this->attributes['id'];
+            Attribute::add($itemsContainerAttributes, 'aria-labelledby', $this->attributes['id']);
         }
 
         return Tag::create(
@@ -662,7 +662,7 @@ final class Dropdown extends Globals
         array $linkAttributes = []
     ): string {
         $itemContainerAttributes = $this->itemContainerAttributes;
-        $linkAttributes['href'] = $link;
+        Attribute::add($linkAttributes, 'href', $link);
 
         $a = Tag::create($this->itemTag, $label, $linkAttributes);
 
@@ -682,8 +682,7 @@ final class Dropdown extends Globals
         }
 
         if (isset($this->attributes['id'])) {
-            /** @var string */
-            $toggleAttributes['id'] = $this->attributes['id'];
+            Attribute::add($toggleAttributes, 'id', $this->attributes['id']);
         }
 
         return match ($this->toggleType) {
@@ -698,7 +697,7 @@ final class Dropdown extends Globals
      */
     private function renderToggleButton(string $label, array $toggleAttributes = []): string
     {
-        $toggleAttributes['type'] = 'button';
+        Attribute::add($toggleAttributes, 'type', 'button');
 
         return Button::create()->attributes($toggleAttributes)->content($label)->render();
     }
@@ -708,7 +707,7 @@ final class Dropdown extends Globals
      */
     private function renderToggleLink(string $label, string $link, array $toggleAttributes = []): string
     {
-        $toggleAttributes['href'] = $link;
+        Attribute::add($toggleAttributes, 'href', $link);
 
         return Button::create()->attributes($toggleAttributes)->content($label)->type('link')->render();
     }
@@ -719,7 +718,8 @@ final class Dropdown extends Globals
     private function renderToggleSplit(string $label, array $toggleAttributes = []): string
     {
         $splitButtonSpanAttributes = $this->splitButtonSpanAttributes;
-        $toggleAttributes['type'] = 'button';
+
+        Attribute::add($toggleAttributes, 'type', 'button');
 
         return Button::create()
             ->attributes($toggleAttributes)
@@ -733,7 +733,8 @@ final class Dropdown extends Globals
     private function renderToggleSplitButton(string $label): string
     {
         $splitButtonAttributes = $this->splitButtonAttributes;
-        $splitButtonAttributes['type'] = 'button';
+
+        Attribute::add($splitButtonAttributes, 'type', 'button');
 
         return Button::create()->attributes($splitButtonAttributes)->content($label)->render();
     }
